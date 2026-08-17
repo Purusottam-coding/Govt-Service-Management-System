@@ -1,42 +1,100 @@
 <?php
 
+use App\Http\Controllers\Admin as Admin;
+use App\Http\Controllers\Citizen as Citizen;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Models\Notice;
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    $featuredServices = Service::where('status', true)->with('department')->latest()->take(6)->get();
+    $publicNotices = Notice::published()->latest()->take(4)->get();
+    return view('welcome', compact('featuredServices', 'publicNotices'));
+})->name('welcome');
+
+/*
+|--------------------------------------------------------------------------
+| Role-based Dashboard Redirect
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if (auth()->user()->isAdmin()) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('citizen.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
+|--------------------------------------------------------------------------
+| Profile Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware('auth')->group(function () {
-
-    Route::get('/profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
-
-    Route::patch('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
-
-    Route::delete('/profile', [ProfileController::class, 'destroy'])
-        ->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Admin Module Routes
 |--------------------------------------------------------------------------
 */
 
 Route::middleware(['auth', 'admin'])
     ->prefix('admin')
+    ->name('admin.')
     ->group(function () {
+        Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])
-            ->name('admin.dashboard');
+        Route::resource('departments', Admin\DepartmentController::class);
+        Route::resource('services', Admin\ServiceController::class);
 
+        Route::get('/applications', [Admin\ApplicationController::class, 'index'])->name('applications.index');
+        Route::get('/applications/{application}', [Admin\ApplicationController::class, 'show'])->name('applications.show');
+        Route::patch('/applications/{application}/status', [Admin\ApplicationController::class, 'updateStatus'])->name('applications.status');
+
+        Route::get('/citizens', [Admin\CitizenController::class, 'index'])->name('citizens.index');
+        Route::get('/citizens/{citizen}', [Admin\CitizenController::class, 'show'])->name('citizens.show');
+
+        Route::resource('notices', Admin\NoticeController::class);
+
+        Route::get('/feedback', [Admin\FeedbackController::class, 'index'])->name('feedback.index');
+        Route::get('/feedback/{feedback}', [Admin\FeedbackController::class, 'show'])->name('feedback.show');
+        Route::patch('/feedback/{feedback}/reply', [Admin\FeedbackController::class, 'reply'])->name('feedback.reply');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| Citizen Module Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'citizen'])
+    ->prefix('citizen')
+    ->name('citizen.')
+    ->group(function () {
+        Route::get('/dashboard', [Citizen\DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/services', [Citizen\ServiceController::class, 'index'])->name('services.index');
+        Route::get('/services/{service}', [Citizen\ServiceController::class, 'show'])->name('services.show');
+
+        Route::resource('applications', Citizen\ApplicationController::class)->only(['index', 'create', 'store', 'show']);
+
+        Route::get('/payments/{application}', [Citizen\PaymentController::class, 'create'])->name('payments.create');
+        Route::post('/payments/{application}', [Citizen\PaymentController::class, 'store'])->name('payments.store');
+        Route::get('/payments/{application}/receipt', [Citizen\PaymentController::class, 'receipt'])->name('payments.receipt');
+
+        Route::resource('feedback', Citizen\FeedbackController::class)->only(['index', 'create', 'store']);
     });
 
 require __DIR__.'/auth.php';
