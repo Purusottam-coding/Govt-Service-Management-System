@@ -139,7 +139,7 @@
                 @if($application->payment)
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Amount Paid:</span>
-                        <span class="fw-bold text-success">${{ number_format($application->payment->amount, 2) }}</span>
+                        <span class="fw-bold text-success">रु. {{ number_format($application->payment->amount, 2) }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">Method:</span>
@@ -158,7 +158,7 @@
                         <i class="bi bi-exclamation-circle text-warning fs-3 mb-2 d-block"></i>
                         <span class="text-muted small">No payment record found.</span>
                         @if(($application->service->fee ?? 0) > 0)
-                            <div class="mt-2 fw-bold text-dark">Fee Due: ${{ number_format($application->service->fee, 2) }}</div>
+                            <div class="mt-2 fw-bold text-dark">Fee Due: रु. {{ number_format($application->service->fee, 2) }}</div>
                         @endif
                     </div>
                 @endif

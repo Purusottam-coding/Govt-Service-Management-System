@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Driver License Renewal',
             'description' => 'Renew your standard or commercial driver license online without visiting the DMV branch.',
             'required_documents' => ['Existing Driver License Copy', 'Proof of Address', 'Recent Eye Examination Certificate'],
-            'fee' => 45.00,
+            'fee' => 1500.00,
             'processing_days' => 5,
             'status' => true,
         ]);
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Vehicle Registration & License Plates',
             'description' => 'Register a new or transferred motor vehicle and request official license plates.',
             'required_documents' => ['Vehicle Bill of Sale', 'Proof of Vehicle Insurance', 'Smog/Inspection Certificate'],
-            'fee' => 120.00,
+            'fee' => 3500.00,
             'processing_days' => 3,
             'status' => true,
         ]);
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Passport Issuance & Renewal',
             'description' => 'Apply for a new national biometric passport or renew an expiring travel document.',
             'required_documents' => ['National Identity Card / Birth Certificate', 'Passport Photograph (2x2)', 'Proof of Citizenship'],
-            'fee' => 110.00,
+            'fee' => 5000.00,
             'processing_days' => 10,
             'status' => true,
         ]);
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Citizenship Certificate Verification',
             'description' => 'Request official verification and certified copy of citizenship documentation.',
             'required_documents' => ['Parental Birth Certificates', 'Proof of Residency'],
-            'fee' => 35.00,
+            'fee' => 500.00,
             'processing_days' => 7,
             'status' => true,
         ]);
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Official Birth Certificate Issuance',
             'description' => 'Order certified copy of birth certificate for legal, educational, or identification purposes.',
             'required_documents' => ['Hospital Birth Notification', 'Parents Government ID Copies'],
-            'fee' => 25.00,
+            'fee' => 250.00,
             'processing_days' => 2,
             'status' => true,
         ]);
@@ -130,7 +130,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Marriage License Registration',
             'description' => 'Register marriage certificate and obtain official legal marriage documentation.',
             'required_documents' => ['Both Applicants Identity Cards', 'Witness Information Form', 'Divorce Decree (if applicable)'],
-            'fee' => 60.00,
+            'fee' => 1000.00,
             'processing_days' => 4,
             'status' => true,
         ]);
@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Residential Building Permit',
             'description' => 'Apply for structural construction, renovation, or expansion permission for residential properties.',
             'required_documents' => ['Architectural Blueprints', 'Property Land Deed', 'Environmental Impact Assessment'],
-            'fee' => 250.00,
+            'fee' => 4500.00,
             'processing_days' => 14,
             'status' => true,
         ]);
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Commercial Business Operating License',
             'description' => 'Register a new small business, LLC, or corporation and obtain official operating permit.',
             'required_documents' => ['Articles of Incorporation', 'Tax Identification Number', 'Lease/Deed Agreement'],
-            'fee' => 180.00,
+            'fee' => 2500.00,
             'processing_days' => 7,
             'status' => true,
         ]);

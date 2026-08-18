@@ -48,7 +48,7 @@
 
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
-                            <label for="fee" class="form-label">Service Fee ($) <span class="text-danger">*</span></label>
+                            <label for="fee" class="form-label">Service Fee (NPR / रु.) <span class="text-danger">*</span></label>
                             <input type="number" step="0.01" class="form-control @error('fee') is-invalid @enderror" id="fee" name="fee" value="{{ old('fee', $service->fee) }}" required>
                             @error('fee')
                                 <div class="invalid-feedback">{{ $message }}</div>

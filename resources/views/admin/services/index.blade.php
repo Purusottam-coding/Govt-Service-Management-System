@@ -68,7 +68,7 @@
                             <span class="badge bg-light text-dark border">{{ $service->department->name ?? 'Unassigned' }}</span>
                         </td>
                         <td class="fw-bold text-success">
-                            ${{ number_format($service->fee, 2) }}
+                            रु. {{ number_format($service->fee, 2) }}
                         </td>
                         <td>
                             <span class="small"><i class="bi bi-clock me-1 text-muted"></i>{{ $service->processing_days }} Days</span>

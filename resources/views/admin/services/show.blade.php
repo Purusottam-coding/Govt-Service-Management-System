@@ -22,7 +22,7 @@
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item d-flex justify-content-between px-0">
                         <span class="text-muted">Fee:</span>
-                        <span class="fw-bold text-success">${{ number_format($service->fee, 2) }}</span>
+                        <span class="fw-bold text-success">रु. {{ number_format($service->fee, 2) }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between px-0">
                         <span class="text-muted">Processing Time:</span>

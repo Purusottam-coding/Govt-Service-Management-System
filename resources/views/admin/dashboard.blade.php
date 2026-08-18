@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['pageTitle' => 'Dashboard Overview'])
+@extends('layouts.admin', ['pageTitle' => 'प्रशासकीय ड्यासबोर्ड'])
 
 @section('content')
 <!-- Stat Cards Row -->
@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <div class="stat-value">{{ number_format($stats['total_applications']) }}</div>
-                    <div class="stat-label">Total Applications</div>
+                    <div class="stat-label">कुल निवेदनहरू</div>
                 </div>
                 <div class="stat-icon primary"><i class="bi bi-file-earmark-text"></i></div>
             </div>
@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <div class="stat-value">{{ number_format($stats['pending_applications']) }}</div>
-                    <div class="stat-label">Pending Review</div>
+                    <div class="stat-label">छानबिन बाँकी (पेन्डिङ)</div>
                 </div>
                 <div class="stat-icon warning"><i class="bi bi-clock-history"></i></div>
             </div>
@@ -27,13 +27,8 @@
     </div>
     <div class="col-12 col-sm-6 col-xl-3">
         <div class="stat-card success">
-            <div class="d-flex justify-content-between align-items-start">
-                <div>
-                    <div class="stat-value">{{ number_format($stats['approved_applications']) }}</div>
-                    <div class="stat-label">Approved</div>
-                </div>
-                <div class="stat-icon success"><i class="bi bi-check-circle"></i></div>
-            </div>
+            <div class="stat-value">{{ number_format($stats['approved_applications']) }}</div>
+            <div class="stat-label">स्वीकृत निवेदनहरू</div>
         </div>
     </div>
     <div class="col-12 col-sm-6 col-xl-3">
@@ -41,7 +36,7 @@
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <div class="stat-value">{{ number_format($stats['total_citizens']) }}</div>
-                    <div class="stat-label">Registered Citizens</div>
+                    <div class="stat-label">दर्ता नागरिकहरू</div>
                 </div>
                 <div class="stat-icon info"><i class="bi bi-people"></i></div>
             </div>
@@ -54,25 +49,25 @@
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <h4 class="fw-bold mb-1 text-primary">{{ $stats['total_departments'] }}</h4>
-            <span class="text-muted small">Departments</span>
+            <span class="text-muted small">मन्त्रालय / विभाग</span>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <h4 class="fw-bold mb-1 text-success">{{ $stats['total_services'] }}</h4>
-            <span class="text-muted small">Active Services</span>
+            <span class="text-muted small">सक्रिय सेवाहरू</span>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <h4 class="fw-bold mb-1 text-purple" style="color:#6c5ce7;">{{ $stats['completed_applications'] }}</h4>
-            <span class="text-muted small">Completed</span>
+            <span class="text-muted small">सम्पन्न कार्यहरू</span>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="card text-center p-3">
             <h4 class="fw-bold mb-1 text-danger">{{ $stats['pending_feedback'] }}</h4>
-            <span class="text-muted small">Open Feedback</span>
+            <span class="text-muted small">बाँकी गुनासोहरू</span>
         </div>
     </div>
 </div>
@@ -82,19 +77,19 @@
     <div class="col-12 col-xl-8">
         <div class="card table-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-file-earmark-text me-2 text-primary"></i>Recent Applications</span>
-                <a href="{{ route('admin.applications.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                <span><i class="bi bi-file-earmark-text me-2 text-primary"></i>हालैका प्राप्त निवेदनहरू</span>
+                <a href="{{ route('admin.applications.index') }}" class="btn btn-sm btn-outline-primary">सबै हेर्नुहोस्</a>
             </div>
             <div class="table-responsive">
                 <table class="table align-middle">
                     <thead>
                         <tr>
-                            <th>App #</th>
-                            <th>Applicant</th>
-                            <th>Service</th>
-                            <th>Status</th>
-                            <th>Submitted</th>
-                            <th>Action</th>
+                            <th>निवेदन नं.</th>
+                            <th>निवेदक</th>
+                            <th>सेवाको नाम</th>
+                            <th>स्थिति</th>
+                            <th>पेश गरेको मिति</th>
+                            <th>कार्य</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,13 +109,13 @@
                                 <td>{{ $app->submitted_at ? $app->submitted_at->format('M d, Y') : $app->created_at->format('M d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.applications.show', $app) }}" class="btn btn-sm btn-action btn-outline-primary">
-                                        <i class="bi bi-eye"></i> View
+                                        <i class="bi bi-eye"></i> हेर्नुहोस्
                                     </a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-4 text-muted">No applications submitted yet.</td>
+                                <td colspan="6" class="text-center py-4 text-muted">हालसम्म कुनै पनि निवेदन प्राप्त भएको छैन।</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -133,8 +128,8 @@
     <div class="col-12 col-xl-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-chat-dots me-2 text-primary"></i>Citizen Feedback</span>
-                <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                <span><i class="bi bi-chat-dots me-2 text-primary"></i>नागरिक गुनासो / सुझाव</span>
+                <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-outline-primary">सबै हेर्नुहोस्</a>
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
@@ -142,13 +137,15 @@
                         <a href="{{ route('admin.feedback.show', $fb) }}" class="list-group-item list-group-item-action p-3">
                             <div class="d-flex justify-content-between align-items-start mb-1">
                                 <h6 class="mb-0 fw-semibold text-dark">{{ $fb->subject }}</h6>
-                                <span class="badge-status {{ $fb->getStatusBadgeClass() }}">{{ ucfirst($fb->status) }}</span>
+                                <span class="badge-status {{ $fb->getStatusBadgeClass() }}">
+                                    {{ $fb->status == 'open' ? 'दर्ता भएको' : ($fb->status == 'replied' ? 'जवाफ प्राप्त' : 'बन्द गरिएको') }}
+                                </span>
                             </div>
                             <p class="small text-muted mb-1 text-truncate">{{ $fb->message }}</p>
-                            <div class="small text-secondary fw-medium">By: {{ $fb->user->name ?? 'Citizen' }}</div>
+                            <div class="small text-secondary fw-medium">निवेदक: {{ $fb->user->name ?? 'नागरिक' }}</div>
                         </a>
                     @empty
-                        <div class="p-4 text-center text-muted">No feedback received yet.</div>
+                        <div class="p-4 text-center text-muted">कुनै पनि गुनासो प्राप्त भएको छैन।</div>
                     @endforelse
                 </div>
             </div>
