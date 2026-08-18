@@ -1,29 +1,36 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends(auth()->user()->isAdmin() ? 'layouts.admin' : 'layouts.citizen', ['pageTitle' => 'प्रोफाइल सम्पादन'])
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+@section('content')
+<div class="container py-2">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card mb-4 shadow-sm border-0">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h6 class="mb-0 fw-bold text-dark"><i class="bi bi-person-fill me-2 text-primary"></i>व्यक्तिगत विवरण अद्यावधिक</h6>
+                </div>
+                <div class="card-body p-4">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            <div class="card mb-4 shadow-sm border-0">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h6 class="mb-0 fw-bold text-dark"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>पासवर्ड परिवर्तन गर्नुहोस्</h6>
+                </div>
+                <div class="card-body p-4">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white py-3">
+                    <h6 class="mb-0 fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i>खाता हटाउनुहोस् (Delete Account)</h6>
+                </div>
+                <div class="card-body p-4">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

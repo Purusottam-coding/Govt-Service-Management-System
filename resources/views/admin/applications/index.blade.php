@@ -1,10 +1,10 @@
-@extends('layouts.admin', ['pageTitle' => 'Manage Applications'])
+@extends('layouts.admin', ['pageTitle' => 'प्राप्त निवेदनहरू व्यवस्थापन'])
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h5 class="mb-1 font-weight-bold">Citizen Applications</h5>
-        <span class="text-muted small">Review, track, and update status of submitted applications</span>
+        <h5 class="mb-1 font-weight-bold">नागरिक निवेदनहरू</h5>
+        <span class="text-muted small">पेश गरिएका निवेदनहरूको समीक्षा, ट्र्याकिङ र स्थिति अद्यावधिक गर्नुहोस्</span>
     </div>
 </div>
 
@@ -12,21 +12,21 @@
 <div class="card mb-4 p-3 bg-light border-0 shadow-sm">
     <form action="{{ route('admin.applications.index') }}" method="GET" class="row g-2">
         <div class="col-12 col-md-4">
-            <input type="text" name="search" class="form-control" placeholder="Search by App #, name, or email..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="निवेदन नं., नाम वा इमेलद्वारा खोज्नुहोस्..." value="{{ request('search') }}">
         </div>
         <div class="col-12 col-md-3">
             <select name="status" class="form-select">
-                <option value="">All Statuses</option>
-                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Under Review</option>
-                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
-                <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
-                <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                <option value="">सबै स्थितिहरू</option>
+                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>पेश गरिएको (पेन्डिङ)</option>
+                <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>छानबिनमा</option>
+                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>स्वीकृत</option>
+                <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>अस्वीकृत</option>
+                <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>सम्पन्न</option>
             </select>
         </div>
         <div class="col-12 col-md-3">
             <select name="service_id" class="form-select">
-                <option value="">All Services</option>
+                <option value="">सबै सेवाहरू</option>
                 @foreach($services as $srv)
                     <option value="{{ $srv->id }}" {{ request('service_id') == $srv->id ? 'selected' : '' }}>
                         {{ $srv->name }}
@@ -35,9 +35,9 @@
             </select>
         </div>
         <div class="col-12 col-md-2 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> Filter</button>
+            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> खोज्नुहोस्</button>
             @if(request()->hasAny(['search', 'status', 'service_id']))
-                <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary" title="Reset"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
             @endif
         </div>
     </form>
@@ -49,13 +49,13 @@
         <table class="table align-middle mb-0">
             <thead>
                 <tr>
-                    <th>App Number</th>
-                    <th>Applicant</th>
-                    <th>Service / Department</th>
-                    <th>Payment</th>
-                    <th>Status</th>
-                    <th>Submitted</th>
-                    <th>Action</th>
+                    <th>निवेदन नं.</th>
+                    <th>निवेदक</th>
+                    <th>सेवा / विभाग</th>
+                    <th>दस्तुर</th>
+                    <th>स्थिति</th>
+                    <th>पेश गरेको मिति</th>
+                    <th>कार्य</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,14 +73,14 @@
                         <td>
                             @if($app->payment)
                                 <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">
-                                    <i class="bi bi-check-circle me-1"></i>Paid (${{ number_format($app->payment->amount, 2) }})
+                                    <i class="bi bi-check-circle me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
                                 </span>
                             @elseif(($app->service->fee ?? 0) > 0)
                                 <span class="badge bg-warning-subtle text-warning border border-warning-subtle fw-semibold">
-                                    <i class="bi bi-clock me-1"></i>Unpaid (${{ number_format($app->service->fee, 2) }})
+                                    <i class="bi bi-clock me-1"></i>बाँकी (रु. {{ number_format($app->service->fee, 2) }})
                                 </span>
                             @else
-                                <span class="badge bg-light text-muted border">Free</span>
+                                <span class="badge bg-light text-muted border">निःशुल्क</span>
                             @endif
                         </td>
                         <td>
@@ -94,13 +94,13 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.applications.show', $app) }}" class="btn btn-sm btn-action btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> Review
+                                <i class="bi bi-eye me-1"></i> समीक्षा
                             </a>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-4 text-muted">No applications found matching criteria.</td>
+                        <td colspan="7" class="text-center py-4 text-muted">कुनै पनि निवेदन भेटिएन।</td>
                     </tr>
                 @endforelse
             </tbody>

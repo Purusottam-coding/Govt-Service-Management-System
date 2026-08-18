@@ -13,73 +13,73 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Seed Admin User
+        // 1. प्रशासक खाता
         $admin = User::create([
-            'name' => 'System Administrator',
-            'email' => 'admin@gov.com',
+            'name' => 'प्रणाली प्रशासक',
+            'email' => 'admin@gov.np',
             'password' => Hash::make('password'),
             'role' => 'admin',
-            'phone' => '+1 (555) 019-2831',
-            'address' => 'Government Headquarters, Block A',
+            'phone' => '९८४०-०१२३४५',
+            'address' => 'सिंहदरबार, काठमाडौं, नेपाल',
         ]);
 
-        // 2. Seed Citizen User
+        // 2. नागरिक परीक्षण खाता
         $citizen = User::create([
-            'name' => 'John Citizen',
-            'email' => 'citizen@test.com',
+            'name' => 'राम बहादुर श्रेष्ठ',
+            'email' => 'citizen@test.np',
             'password' => Hash::make('password'),
             'role' => 'citizen',
-            'phone' => '+1 (555) 382-9102',
-            'address' => '742 Evergreen Terrace, Springfield',
+            'phone' => '९८४१-०१२३४६',
+            'address' => 'बालाजु, काठमाडौं, नेपाल',
         ]);
 
-        // 3. Seed Departments
+        // 3. मन्त्रालय तथा विभागहरू
         $deptTransport = Department::create([
-            'name' => 'Department of Motor Vehicles & Transport',
-            'description' => 'Oversees driver licensing, vehicle registration, road permits, and transport regulations.',
-            'phone' => '+1 (555) 100-2000',
-            'email' => 'transport@gov.com',
+            'name' => 'यातायात व्यवस्था विभाग',
+            'description' => 'सवारी चालक अनुमतिपत्र, सवारी साधन दर्ता, सडक परमिट, र यातायात नियमनसम्बन्धी कार्यहरू सञ्चालन गर्दछ।',
+            'phone' => '०१-४२११५४०',
+            'email' => 'transport@gov.np',
             'status' => true,
         ]);
 
         $deptImmigration = Department::create([
-            'name' => 'Department of Immigration & Citizenship',
-            'description' => 'Handles passport issuance, visa processing, citizenship verification, and travel documentation.',
-            'phone' => '+1 (555) 200-3000',
-            'email' => 'immigration@gov.com',
+            'name' => 'राहदानी विभाग (अध्यागमन)',
+            'description' => 'राहदानी जारी, भिसा प्रशोधन, नागरिकता प्रमाणीकरण, र यात्रा कागजातसम्बन्धी सेवाहरू प्रदान गर्दछ।',
+            'phone' => '०१-४४१४३३६',
+            'email' => 'passport@gov.np',
             'status' => true,
         ]);
 
         $deptCivil = Department::create([
-            'name' => 'Department of Civil Registry & Vital Statistics',
-            'description' => 'Manages birth certificates, marriage licenses, death records, and identity registration.',
-            'phone' => '+1 (555) 300-4000',
-            'email' => 'civil@gov.com',
+            'name' => 'नागरिक दर्ता विभाग (जिल्ला प्रशासन)',
+            'description' => 'जन्म दर्ता, विवाह दर्ता, मृत्यु दर्ता, र नागरिकता प्रमाणपत्रसम्बन्धी सेवाहरू व्यवस्थापन गर्दछ।',
+            'phone' => '०१-४२११७८३',
+            'email' => 'civilreg@gov.np',
             'status' => true,
         ]);
 
         $deptHousing = Department::create([
-            'name' => 'Department of Housing & Urban Planning',
-            'description' => 'Processes building permits, zoning approvals, public housing applications, and property records.',
-            'phone' => '+1 (555) 400-5000',
-            'email' => 'housing@gov.com',
+            'name' => 'नगरपालिका तथा भवन निर्माण विभाग',
+            'description' => 'निर्माण अनुमति, जग्गा प्रयोग स्वीकृति, सार्वजनिक आवास निवेदन, र सम्पत्ति दर्तासम्बन्धी कार्यहरू गर्दछ।',
+            'phone' => '०१-४२११४५१',
+            'email' => 'housing@gov.np',
             'status' => true,
         ]);
 
         $deptBusiness = Department::create([
-            'name' => 'Department of Commerce & Business Affairs',
-            'description' => 'Handles commercial business registration, trade licenses, tax compliance certificates, and permits.',
-            'phone' => '+1 (555) 500-6000',
-            'email' => 'commerce@gov.com',
+            'name' => 'वाणिज्य तथा आपूर्ति विभाग',
+            'description' => 'व्यापारिक व्यवसाय दर्ता, व्यापार इजाजत, कर अनुपालन प्रमाणपत्र, र व्यावसायिक परमिटसम्बन्धी सेवाहरू।',
+            'phone' => '०१-४२११०१७',
+            'email' => 'commerce@gov.np',
             'status' => true,
         ]);
 
-        // 4. Seed Services
+        // 4. सेवाहरू
         Service::create([
             'department_id' => $deptTransport->id,
-            'name' => 'Driver License Renewal',
-            'description' => 'Renew your standard or commercial driver license online without visiting the DMV branch.',
-            'required_documents' => ['Existing Driver License Copy', 'Proof of Address', 'Recent Eye Examination Certificate'],
+            'name' => 'सवारी चालक अनुमतिपत्र नवीकरण',
+            'description' => 'आफ्नो सवारी चालक अनुमतिपत्र यातायात व्यवस्था कार्यालयमा नगई अनलाइनबाट नवीकरण गर्नुहोस्।',
+            'required_documents' => ['अवधि नसकिएको चालक अनुमतिपत्रको प्रतिलिपि', 'बसोबास प्रमाण', 'हालसालैको आँखा जाँच प्रमाणपत्र'],
             'fee' => 1500.00,
             'processing_days' => 5,
             'status' => true,
@@ -87,9 +87,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptTransport->id,
-            'name' => 'Vehicle Registration & License Plates',
-            'description' => 'Register a new or transferred motor vehicle and request official license plates.',
-            'required_documents' => ['Vehicle Bill of Sale', 'Proof of Vehicle Insurance', 'Smog/Inspection Certificate'],
+            'name' => 'सवारी साधन दर्ता तथा नम्बर प्लेट',
+            'description' => 'नयाँ वा हस्तान्तरण गरिएको सवारी साधन दर्ता गर्नुहोस् र आधिकारिक नम्बर प्लेट अनुरोध गर्नुहोस्।',
+            'required_documents' => ['सवारी खरिद बिल', 'बिमा प्रमाणपत्र', 'प्रदूषण जाँच प्रमाणपत्र'],
             'fee' => 3500.00,
             'processing_days' => 3,
             'status' => true,
@@ -97,9 +97,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptImmigration->id,
-            'name' => 'Passport Issuance & Renewal',
-            'description' => 'Apply for a new national biometric passport or renew an expiring travel document.',
-            'required_documents' => ['National Identity Card / Birth Certificate', 'Passport Photograph (2x2)', 'Proof of Citizenship'],
+            'name' => 'राहदानी जारी तथा नवीकरण',
+            'description' => 'नयाँ बायोमेट्रिक राहदानीको लागि आवेदन दिनुहोस् वा म्याद नाघ्न लागेको यात्रा कागजात नवीकरण गर्नुहोस्।',
+            'required_documents' => ['नागरिकता प्रमाणपत्र / जन्मदर्ता', 'हालसालैको पासपोर्ट साइजको फोटो', 'नागरिकताको प्रमाण'],
             'fee' => 5000.00,
             'processing_days' => 10,
             'status' => true,
@@ -107,9 +107,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptImmigration->id,
-            'name' => 'Citizenship Certificate Verification',
-            'description' => 'Request official verification and certified copy of citizenship documentation.',
-            'required_documents' => ['Parental Birth Certificates', 'Proof of Residency'],
+            'name' => 'नागरिकता प्रमाणपत्र प्रमाणीकरण',
+            'description' => 'नागरिकता कागजातको आधिकारिक प्रमाणीकरण र प्रमाणित प्रतिलिपिको लागि अनुरोध गर्नुहोस्।',
+            'required_documents' => ['बाबु-आमाको जन्मदर्ता', 'बसोबास प्रमाण'],
             'fee' => 500.00,
             'processing_days' => 7,
             'status' => true,
@@ -117,9 +117,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptCivil->id,
-            'name' => 'Official Birth Certificate Issuance',
-            'description' => 'Order certified copy of birth certificate for legal, educational, or identification purposes.',
-            'required_documents' => ['Hospital Birth Notification', 'Parents Government ID Copies'],
+            'name' => 'जन्मदर्ता प्रमाणपत्र जारी',
+            'description' => 'कानुनी, शैक्षिक, वा परिचयको उद्देश्यका लागि जन्मदर्ता प्रमाणपत्रको प्रमाणित प्रतिलिपि अर्डर गर्नुहोस्।',
+            'required_documents' => ['अस्पतालको जन्म सूचना', 'अभिभावकको नागरिकता प्रतिलिपि'],
             'fee' => 250.00,
             'processing_days' => 2,
             'status' => true,
@@ -127,9 +127,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptCivil->id,
-            'name' => 'Marriage License Registration',
-            'description' => 'Register marriage certificate and obtain official legal marriage documentation.',
-            'required_documents' => ['Both Applicants Identity Cards', 'Witness Information Form', 'Divorce Decree (if applicable)'],
+            'name' => 'विवाह दर्ता प्रमाणपत्र',
+            'description' => 'विवाह दर्ता गर्नुहोस् र आधिकारिक कानुनी विवाह कागजात प्राप्त गर्नुहोस्।',
+            'required_documents' => ['दुवै पक्षको नागरिकता प्रमाणपत्र', 'साक्षी परिचय फारम', 'सम्बन्धविच्छेद आदेश (पूर्व विवाहित भए)'],
             'fee' => 1000.00,
             'processing_days' => 4,
             'status' => true,
@@ -137,9 +137,9 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptHousing->id,
-            'name' => 'Residential Building Permit',
-            'description' => 'Apply for structural construction, renovation, or expansion permission for residential properties.',
-            'required_documents' => ['Architectural Blueprints', 'Property Land Deed', 'Environmental Impact Assessment'],
+            'name' => 'आवासीय भवन निर्माण अनुमति',
+            'description' => 'आवासीय सम्पत्तिको संरचनात्मक निर्माण, नवीकरण, वा विस्तारको लागि अनुमति प्राप्त गर्नुहोस्।',
+            'required_documents' => ['वास्तुकला नक्सा (ब्लुप्रिन्ट)', 'जग्गाधनीपुर्जा', 'वातावरणीय प्रभाव मूल्याङ्कन'],
             'fee' => 4500.00,
             'processing_days' => 14,
             'status' => true,
@@ -147,32 +147,32 @@ class DatabaseSeeder extends Seeder
 
         Service::create([
             'department_id' => $deptBusiness->id,
-            'name' => 'Commercial Business Operating License',
-            'description' => 'Register a new small business, LLC, or corporation and obtain official operating permit.',
-            'required_documents' => ['Articles of Incorporation', 'Tax Identification Number', 'Lease/Deed Agreement'],
+            'name' => 'व्यावसायिक व्यवसाय इजाजत दर्ता',
+            'description' => 'नयाँ साना व्यवसाय, साझेदारी, वा कम्पनी दर्ता गर्नुहोस् र आधिकारिक परिचालन अनुमति प्राप्त गर्नुहोस्।',
+            'required_documents' => ['व्यवसाय दर्ताको लागि निवेदन', 'प्यान / कर नम्बर', 'कार्यालय भाडा वा स्वामित्व कागजात'],
             'fee' => 2500.00,
             'processing_days' => 7,
             'status' => true,
         ]);
 
-        // 5. Seed Public Notices
+        // 5. सार्वजनिक सूचनाहरू
         Notice::create([
-            'title' => 'Portal Maintenance & Scheduled System Upgrade',
-            'content' => 'Please be advised that the Online Government Service Portal will undergo scheduled maintenance on Sunday from 02:00 AM to 06:00 AM. Online submissions may be temporarily unavailable.',
+            'title' => 'पोर्टल रखरखाव तथा प्रणाली स्तरोन्नति सूचना',
+            'content' => 'अनलाइन सरकारी सेवा पोर्टल आइतबार राति २:०० बजेदेखि बिहान ६:०० बजेसम्म अनुसूचित रखरखावको लागि बन्द रहनेछ। यस अवधिमा अनलाइन निवेदन सेवा अस्थायी रूपमा उपलब्ध नहुन सक्छ।',
             'published_at' => now()->subDays(1),
             'is_active' => true,
         ]);
 
         Notice::create([
-            'title' => 'New Expedited Passport & Document Delivery Available',
-            'content' => 'Citizens can now opt for express courier delivery of renewed passports and certified vital statistics records directly to their registered residential address.',
+            'title' => 'द्रुत राहदानी तथा कागजात वितरण सेवा शुरू',
+            'content' => 'नागरिकहरूले अब नवीकरण गरिएको राहदानी र प्रमाणित कागजातहरू आफ्नो दर्ता ठेगानामा एक्सप्रेस कुरियरद्वारा प्राप्त गर्न सक्नुहुनेछ।',
             'published_at' => now()->subDays(3),
             'is_active' => true,
         ]);
 
         Notice::create([
-            'title' => 'Digital Fee Payment Methods Expanded',
-            'content' => 'We now accept instant online debit/credit card payments, digital bank wires, and over-the-counter payments at all municipal service centers nationwide.',
+            'title' => 'डिजिटल दस्तुर भुक्तानी प्रणाली विस्तार',
+            'content' => 'अब हामी eSewa, Khalti, ConnectIPS, बैंक ट्रान्सफर, र सबै प्रमुख क्रेडिट/डेबिट कार्डबाट तत्काल अनलाइन भुक्तानी स्वीकार गर्दछौं।',
             'published_at' => now()->subDays(5),
             'is_active' => true,
         ]);

@@ -80,11 +80,11 @@ class Application extends Model
     public function getStatusLabel(): string
     {
         return match ($this->status) {
-            'pending' => 'Pending',
-            'under_review' => 'Under Review',
-            'approved' => 'Approved',
-            'rejected' => 'Rejected',
-            'completed' => 'Completed',
+            'pending' => 'पेश गरिएको',
+            'under_review' => 'छानबिनमा',
+            'approved' => 'स्वीकृत',
+            'rejected' => 'अस्वीकृत',
+            'completed' => 'सम्पन्न',
             default => ucfirst($this->status),
         };
     }

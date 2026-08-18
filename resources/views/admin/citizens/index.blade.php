@@ -1,10 +1,10 @@
-@extends('layouts.admin', ['pageTitle' => 'Registered Citizens'])
+@extends('layouts.admin', ['pageTitle' => 'दर्ता नागरिकहरू'])
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h5 class="mb-1 font-weight-bold">Citizen Management</h5>
-        <span class="text-muted small">View registered citizens and their application histories</span>
+        <h5 class="mb-1 font-weight-bold">नागरिक व्यवस्थापन</h5>
+        <span class="text-muted small">दर्ता नागरिकहरू र उनीहरूको निवेदन इतिहास हेर्नुहोस्</span>
     </div>
 </div>
 
@@ -12,12 +12,12 @@
 <div class="card mb-4 p-3 bg-light border-0 shadow-sm">
     <form action="{{ route('admin.citizens.index') }}" method="GET" class="row g-2">
         <div class="col-12 col-md-9">
-            <input type="text" name="search" class="form-control" placeholder="Search by citizen name, email, or phone..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="नागरिकको नाम, इमेल वा फोनद्वारा खोज्नुहोस्..." value="{{ request('search') }}">
         </div>
         <div class="col-12 col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> Search</button>
+            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> खोज्नुहोस्</button>
             @if(request()->filled('search'))
-                <a href="{{ route('admin.citizens.index') }}" class="btn btn-outline-secondary" title="Reset"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.citizens.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
             @endif
         </div>
     </form>
@@ -30,12 +30,12 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Citizen Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Registered Date</th>
-                    <th>Applications</th>
-                    <th>Action</th>
+                    <th>नागरिकको नाम</th>
+                    <th>इमेल</th>
+                    <th>फोन</th>
+                    <th>दर्ता मिति</th>
+                    <th>निवेदनहरू</th>
+                    <th>कार्य</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,18 +55,18 @@
                         <td>{{ $citizen->created_at->format('M d, Y') }}</td>
                         <td>
                             <span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-semibold">
-                                {{ $citizen->applications_count }} applications
+                                {{ $citizen->applications_count }} निवेदन
                             </span>
                         </td>
                         <td>
                             <a href="{{ route('admin.citizens.show', $citizen) }}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> View Profile
+                                <i class="bi bi-eye me-1"></i> प्रोफाइल हेर्नुहोस्
                             </a>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-4 text-muted">No citizens found matching search.</td>
+                        <td colspan="7" class="text-center py-4 text-muted">खोज अनुसार कुनै नागरिक भेटिएन।</td>
                     </tr>
                 @endforelse
             </tbody>

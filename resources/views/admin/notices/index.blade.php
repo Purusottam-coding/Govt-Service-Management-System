@@ -1,13 +1,13 @@
-@extends('layouts.admin', ['pageTitle' => 'Manage Notices'])
+@extends('layouts.admin', ['pageTitle' => 'सूचना व्यवस्थापन'])
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h5 class="mb-1 font-weight-bold">Public Notices & Announcements</h5>
-        <span class="text-muted small">Publish announcements displayed on the public landing page</span>
+        <h5 class="mb-1 font-weight-bold">सार्वजनिक सूचना तथा घोषणाहरू</h5>
+        <span class="text-muted small">सार्वजनिक पोर्टलमा प्रदर्शन हुने घोषणाहरू प्रकाशित गर्नुहोस्</span>
     </div>
     <a href="{{ route('admin.notices.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> Add Notice
+        <i class="bi bi-plus-lg me-1"></i> नयाँ सूचना थप्नुहोस्
     </a>
 </div>
 
@@ -17,10 +17,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Published Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>सूचनाको शीर्षक</th>
+                    <th>प्रकाशन मिति</th>
+                    <th>स्थिति</th>
+                    <th>कार्यहरू</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,24 +32,24 @@
                             <div class="small text-muted text-truncate" style="max-width:400px;">{{ Str::limit($notice->content, 100) }}</div>
                         </td>
                         <td>
-                            <div class="small"><i class="bi bi-calendar-event me-1 text-muted"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : 'Draft' }}</div>
+                            <div class="small"><i class="bi bi-calendar-event me-1 text-muted"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : 'मस्यौदा (Draft)' }}</div>
                         </td>
                         <td>
                             @if($notice->is_active)
-                                <span class="badge-status badge-active">Published</span>
+                                <span class="badge-status badge-active">प्रकाशित</span>
                             @else
-                                <span class="badge-status badge-inactive">Inactive</span>
+                                <span class="badge-status badge-inactive">निष्क्रिय</span>
                             @endif
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm">
-                                <a href="{{ route('admin.notices.edit', $notice) }}" class="btn btn-outline-secondary" title="Edit">
+                                <a href="{{ route('admin.notices.edit', $notice) }}" class="btn btn-outline-secondary" title="सम्पादन">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('admin.notices.destroy', $notice) }}" method="POST" onsubmit="return confirm('Delete this notice?');" class="d-inline">
+                                <form action="{{ route('admin.notices.destroy', $notice) }}" method="POST" onsubmit="return confirm('के तपाईं यो सूचना हटाउन चाहनुहुन्छ?');" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger" title="Delete">
+                                    <button type="submit" class="btn btn-outline-danger" title="हटाउनुहोस्">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -58,7 +58,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center py-4 text-muted">No notices published yet.</td>
+                        <td colspan="5" class="text-center py-4 text-muted">हालसम्म कुनै पनि सूचना प्रकाशित गरिएको छैन।</td>
                     </tr>
                 @endforelse
             </tbody>
