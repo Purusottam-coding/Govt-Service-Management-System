@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Hero Welcome Banner -->
-<div class="card bg-primary text-white mb-4 border-0 shadow-sm" style="background: linear-gradient(135deg, #1a56db 0%, #6c5ce7 100%);">
+<div class="card bg-primary text-white mb-4 border-0 shadow-sm" style="background: linear-gradient(135deg, #1a56db 0%, #0ea5e9 100%);">
     <div class="card-body p-4">
         <div class="row align-items-center">
             <div class="col-md-8">
@@ -22,26 +22,46 @@
 <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
         <div class="stat-card primary">
-            <div class="stat-value">{{ $stats['total_applications'] }}</div>
-            <div class="stat-label">कुल निवेदनहरू</div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-value">{{ $stats['total_applications'] }}</div>
+                    <div class="stat-label">कुल निवेदनहरू</div>
+                </div>
+                <div class="stat-icon primary"><i data-lucide="file-text"></i></div>
+            </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card warning">
-            <div class="stat-value">{{ $stats['pending_applications'] }}</div>
-            <div class="stat-label">प्रक्रियामा रहेका</div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-value">{{ $stats['pending_applications'] }}</div>
+                    <div class="stat-label">प्रक्रियामा रहेका</div>
+                </div>
+                <div class="stat-icon warning"><i data-lucide="history"></i></div>
+            </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card success">
-            <div class="stat-value">{{ $stats['approved_applications'] }}</div>
-            <div class="stat-label">स्वीकृत भएका</div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-value">{{ $stats['approved_applications'] }}</div>
+                    <div class="stat-label">स्वीकृत भएका</div>
+                </div>
+                <div class="stat-icon success"><i data-lucide="check-circle-2"></i></div>
+            </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="stat-card danger">
-            <div class="stat-value">{{ $stats['rejected_applications'] }}</div>
-            <div class="stat-label">अस्वीकृत भएका</div>
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="stat-value">{{ $stats['rejected_applications'] }}</div>
+                    <div class="stat-label">अस्वीकृत भएका</div>
+                </div>
+                <div class="stat-icon danger"><i data-lucide="x-circle"></i></div>
+            </div>
         </div>
     </div>
 </div>

@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-start gap-3">
-                        <div class="bg-purple-subtle text-purple p-2 rounded-3 fs-4" style="color:#6c5ce7;"><i data-lucide="history"></i></div>
+                        <div class="bg-info-subtle text-info p-2 rounded-3 fs-4" style="color:#0ea5e9;"><i data-lucide="history"></i></div>
                         <div>
                             <h6 class="fw-bold mb-0">प्रत्यक्ष आवेदन ट्र्याकिङ</h6>
                             <small class="text-muted">आफ्नो निवेदनको अवस्था पेश गरिएको देखि स्वीकृत हुनेसम्म प्रत्यक्ष हेर्नुहोस्।</small>
