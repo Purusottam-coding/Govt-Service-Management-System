@@ -3,15 +3,15 @@
 @section('content')
 <div class="mb-4 d-flex justify-content-between align-items-center">
     <a href="{{ route('citizen.applications.index') }}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> मेरा निवेदनहरूमा फर्कनुहोस्
+        <i data-lucide="arrow-left" class="me-1"></i> मेरा निवेदनहरूमा फर्कनुहोस्
     </a>
     @if($application->payment)
         <a href="{{ route('citizen.payments.receipt', $application) }}" class="btn btn-sm btn-outline-success">
-            <i class="bi bi-receipt me-1"></i> भुक्तानी रसिद हेर्नुहोस्
+            <i data-lucide="receipt" class="me-1"></i> भुक्तानी रसिद हेर्नुहोस्
         </a>
     @elseif(($application->service->fee ?? 0) > 0)
         <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-warning">
-            <i class="bi bi-credit-card me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
+            <i data-lucide="credit-card" class="me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
         </a>
     @endif
 </div>
@@ -22,25 +22,25 @@
 
     <ul class="status-tracker">
         <li class="step {{ in_array($application->status, ['pending', 'under_review', 'approved', 'completed']) ? 'completed' : '' }}">
-            <div class="step-icon"><i class="bi bi-send-check"></i></div>
+            <div class="step-icon"><i data-lucide="send-check"></i></div>
             <div class="step-label">पेश गरिएको</div>
         </li>
         <li class="step {{ in_array($application->status, ['under_review', 'approved', 'completed']) ? 'completed' : ($application->status == 'pending' ? 'active' : '') }}">
-            <div class="step-icon"><i class="bi bi-search"></i></div>
+            <div class="step-icon"><i data-lucide="search"></i></div>
             <div class="step-label">छानबिनमा</div>
         </li>
         @if($application->status == 'rejected')
             <li class="step rejected">
-                <div class="step-icon"><i class="bi bi-x-circle"></i></div>
+                <div class="step-icon"><i data-lucide="x-circle"></i></div>
                 <div class="step-label">अस्वीकृत</div>
             </li>
         @else
             <li class="step {{ in_array($application->status, ['approved', 'completed']) ? 'completed' : '' }}">
-                <div class="step-icon"><i class="bi bi-check-lg"></i></div>
+                <div class="step-icon"><i data-lucide="check"></i></div>
                 <div class="step-label">स्वीकृत</div>
             </li>
             <li class="step {{ $application->status == 'completed' ? 'completed' : '' }}">
-                <div class="step-icon"><i class="bi bi-award"></i></div>
+                <div class="step-icon"><i data-lucide="award"></i></div>
                 <div class="step-label">सम्पन्न</div>
             </li>
         @endif
@@ -52,7 +52,7 @@
     <div class="col-12 col-lg-8">
         <div class="card mb-4">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-file-earmark-text me-2 text-primary"></i>निवेदन नं. #{{ $application->application_number }}</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="file-text" class="me-2 text-primary"></i>निवेदन नं. #{{ $application->application_number }}</h6>
                 <span class="badge-status {{ $application->getStatusBadgeClass() }}">{{ $application->getStatusLabel() }}</span>
             </div>
             <div class="card-body p-4">
@@ -73,24 +73,24 @@
 
                 @if($application->admin_remarks)
                     <div class="alert alert-info mb-4">
-                        <h6 class="fw-bold mb-1"><i class="bi bi-info-circle me-1"></i> प्रशासकीय टिप्पणी / सूचना:</h6>
+                        <h6 class="fw-bold mb-1"><i data-lucide="info" class="me-1"></i> प्रशासकीय टिप्पणी / सूचना:</h6>
                         <p class="mb-0 small" style="white-space: pre-line;">{{ $application->admin_remarks }}</p>
                     </div>
                 @endif
 
-                <h6 class="fw-bold text-dark mb-3"><i class="bi bi-file-earmark-check me-2 text-primary"></i>अपलोड गरिएका कागजातहरू</h6>
+                <h6 class="fw-bold text-dark mb-3"><i data-lucide="file-check" class="me-2 text-primary"></i>अपलोड गरिएका कागजातहरू</h6>
                 @if($application->documents->count() > 0)
                     <div class="list-group mb-4">
                         @foreach($application->documents as $doc)
                             <div class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center gap-2">
-                                    <i class="bi bi-file-earmark-pdf text-danger fs-4"></i>
+                                    <i data-lucide="file-text" class="text-danger fs-4"></i>
                                     <div>
                                         <span class="fw-semibold text-dark small d-block">{{ $doc->document_name }}</span>
                                     </div>
                                 </div>
                                 <a href="{{ Storage::url($doc->file_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-eye"></i> हेर्नुहोस्
+                                    <i data-lucide="eye"></i> हेर्नुहोस्
                                 </a>
                             </div>
                         @endforeach
@@ -106,7 +106,7 @@
     <div class="col-12 col-lg-4">
         <div class="card mb-4">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-credit-card me-2 text-primary"></i>भुक्तानी तथा दस्तुर</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="credit-card" class="me-2 text-primary"></i>भुक्तानी तथा दस्तुर</h6>
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-2">
@@ -126,7 +126,7 @@
 
                 @if(!$application->payment && ($application->service->fee ?? 0) > 0)
                     <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-warning w-100 fw-bold">
-                        <i class="bi bi-credit-card me-1"></i> भुक्तानी गर्नुहोस्
+                        <i data-lucide="credit-card" class="me-1"></i> भुक्तानी गर्नुहोस्
                     </a>
                 @endif
 

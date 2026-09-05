@@ -20,9 +20,9 @@
             </select>
         </div>
         <div class="col-12 col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-filter"></i> छान्नुहोस्</button>
+            <button type="submit" class="btn btn-secondary w-100"><i data-lucide="filter"></i> छान्नुहोस्</button>
             @if(request()->filled('status'))
-                <a href="{{ route('admin.feedback.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.feedback.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -57,7 +57,7 @@
                         <td>{{ $fb->created_at->format('M d, Y') }}</td>
                         <td>
                             <a href="{{ route('admin.feedback.show', $fb) }}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-reply me-1"></i> समीक्षा र जवाफ
+                                <i data-lucide="reply" class="me-1"></i> समीक्षा र जवाफ
                             </a>
                         </td>
                     </tr>

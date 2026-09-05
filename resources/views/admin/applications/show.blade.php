@@ -3,7 +3,7 @@
 @section('content')
 <div class="mb-4">
     <a href="{{ route('admin.applications.index') }}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> निवेदन सूचीमा फर्कनुहोस्
+        <i data-lucide="arrow-left" class="me-1"></i> निवेदन सूचीमा फर्कनुहोस्
     </a>
 </div>
 
@@ -12,7 +12,7 @@
     <div class="col-12 col-lg-8">
         <div class="card mb-4">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-file-earmark-person me-2 text-primary"></i>निवेदन नं. #{{ $application->application_number }}</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="file-earmark-person" class="me-2 text-primary"></i>निवेदन नं. #{{ $application->application_number }}</h6>
                 <span class="badge-status {{ $application->getStatusBadgeClass() }}">{{ $application->getStatusLabel() }}</span>
             </div>
             <div class="card-body p-4">
@@ -37,7 +37,7 @@
 
                 <hr class="my-4">
 
-                <h6 class="fw-bold text-dark mb-3"><i class="bi bi-person me-2 text-primary"></i>निवेदकको विवरण</h6>
+                <h6 class="fw-bold text-dark mb-3"><i data-lucide="user" class="me-2 text-primary"></i>निवेदकको विवरण</h6>
                 <div class="row g-3 mb-4 bg-light p-3 rounded">
                     <div class="col-md-6">
                         <span class="text-muted small d-block">पूरा नाम</span>
@@ -57,21 +57,21 @@
                     </div>
                 </div>
 
-                <h6 class="fw-bold text-dark mb-3"><i class="bi bi-file-earmark-check me-2 text-primary"></i>अपलोड गरिएका कागजातहरू</h6>
+                <h6 class="fw-bold text-dark mb-3"><i data-lucide="file-check" class="me-2 text-primary"></i>अपलोड गरिएका कागजातहरू</h6>
                 @if($application->documents->count() > 0)
                     <div class="row g-2 mb-4">
                         @foreach($application->documents as $doc)
                             <div class="col-12 col-md-6">
                                 <div class="p-3 border rounded d-flex justify-content-between align-items-center bg-white">
                                     <div class="d-flex align-items-center gap-2">
-                                        <i class="bi bi-file-earmark-pdf fs-4 text-danger"></i>
+                                        <i data-lucide="file-text" class="fs-4 text-danger"></i>
                                         <div>
                                             <div class="fw-semibold small">{{ $doc->document_name }}</div>
                                             <span class="text-muted extra-small">अपलोड गरिएको</span>
                                         </div>
                                     </div>
                                     <a href="{{ Storage::url($doc->file_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-download"></i> हेर्नुहोस्
+                                        <i data-lucide="download"></i> हेर्नुहोस्
                                     </a>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
 
                 @if($application->admin_remarks)
                     <div class="alert alert-info mb-0">
-                        <h6 class="fw-bold mb-1"><i class="bi bi-chat-left-text me-1"></i> प्रशासकीय टिप्पणी:</h6>
+                        <h6 class="fw-bold mb-1"><i data-lucide="chat-left-text" class="me-1"></i> प्रशासकीय टिप्पणी:</h6>
                         <p class="mb-0 small">{{ $application->admin_remarks }}</p>
                     </div>
                 @endif
@@ -96,7 +96,7 @@
         <!-- Update Status Form -->
         <div class="card mb-4">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-pencil-square me-2 text-primary"></i>निवेदन स्थिति अद्यावधिक</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="edit" class="me-2 text-primary"></i>निवेदन स्थिति अद्यावधिक</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.applications.status', $application) }}" method="POST">
@@ -125,7 +125,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-save me-1"></i> स्थिति अद्यावधिक गर्नुहोस्</button>
+                    <button type="submit" class="btn btn-primary w-100"><i data-lucide="save" class="me-1"></i> स्थिति अद्यावधिक गर्नुहोस्</button>
                 </form>
             </div>
         </div>
@@ -133,7 +133,7 @@
         <!-- Payment Info Card -->
         <div class="card">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-credit-card me-2 text-primary"></i>भुक्तानी विवरण</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="credit-card" class="me-2 text-primary"></i>भुक्तानी विवरण</h6>
             </div>
             <div class="card-body">
                 @if($application->payment)
@@ -155,7 +155,7 @@
                     </div>
                 @else
                     <div class="text-center py-3">
-                        <i class="bi bi-exclamation-circle text-warning fs-3 mb-2 d-block"></i>
+                        <i data-lucide="alert-circle" class="text-warning fs-3 mb-2 d-block"></i>
                         <span class="text-muted small">भुक्तानीको कुनै रेकर्ड भेटिएन।</span>
                         @if(($application->service->fee ?? 0) > 0)
                             <div class="mt-2 fw-bold text-dark">बाँकी दस्तुर: रु. {{ number_format($application->service->fee, 2) }}</div>

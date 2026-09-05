@@ -5,9 +5,9 @@
     <div class="col-12 col-md-8">
         <div class="card">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-pencil me-2 text-primary"></i>सरकारी सेवा सम्पादन गर्नुहोस्</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="pencil" class="me-2 text-primary"></i>सरकारी सेवा सम्पादन गर्नुहोस्</h6>
                 <a href="{{ route('admin.services.index') }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-1"></i> पछाडि
+                    <i data-lucide="arrow-left" class="me-1"></i> पछाडि
                 </a>
             </div>
             <div class="card-body p-4">
@@ -79,7 +79,7 @@
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('admin.services.index') }}" class="btn btn-light">रद्द गर्नुहोस्</a>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i> सेवा अद्यावधिक गर्नुहोस्</button>
+                        <button type="submit" class="btn btn-primary"><i data-lucide="check" class="me-1"></i> सेवा अद्यावधिक गर्नुहोस्</button>
                     </div>
                 </form>
             </div>

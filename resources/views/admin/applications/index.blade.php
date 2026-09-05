@@ -35,9 +35,9 @@
             </select>
         </div>
         <div class="col-12 col-md-2 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> खोज्नुहोस्</button>
+            <button type="submit" class="btn btn-secondary w-100"><i data-lucide="search"></i> खोज्नुहोस्</button>
             @if(request()->hasAny(['search', 'status', 'service_id']))
-                <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -73,11 +73,11 @@
                         <td>
                             @if($app->payment)
                                 <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">
-                                    <i class="bi bi-check-circle me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
+                                    <i data-lucide="check-circle" class="me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
                                 </span>
                             @elseif(($app->service->fee ?? 0) > 0)
                                 <span class="badge bg-warning-subtle text-warning border border-warning-subtle fw-semibold">
-                                    <i class="bi bi-clock me-1"></i>बाँकी (रु. {{ number_format($app->service->fee, 2) }})
+                                    <i data-lucide="clock" class="me-1"></i>बाँकी (रु. {{ number_format($app->service->fee, 2) }})
                                 </span>
                             @else
                                 <span class="badge bg-light text-muted border">निःशुल्क</span>
@@ -94,7 +94,7 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.applications.show', $app) }}" class="btn btn-sm btn-action btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> समीक्षा
+                                <i data-lucide="eye" class="me-1"></i> समीक्षा
                             </a>
                         </td>
                     </tr>

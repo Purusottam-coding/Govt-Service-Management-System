@@ -5,9 +5,9 @@
     <div class="col-12 col-md-10 col-lg-8">
         <div class="card">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 fw-bold"><i class="bi bi-file-earmark-plus me-2 text-primary"></i>अनलाइन सेवा आवेदन फारम</h5>
+                <h5 class="mb-0 fw-bold"><i data-lucide="file-earmark-plus" class="me-2 text-primary"></i>अनलाइन सेवा आवेदन फारम</h5>
                 <a href="{{ route('citizen.services.index') }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-1"></i> फर्कनुहोस्
+                    <i data-lucide="arrow-left" class="me-1"></i> फर्कनुहोस्
                 </a>
             </div>
             <div class="card-body p-4">
@@ -41,14 +41,14 @@
                                 <strong>अनुमानित प्रशोधन समय:</strong> <span id="infoDays">-</span> दिन<br>
                                 <strong>सरकारी दस्तुर:</strong> रु. <span id="infoFee">0.00</span>
                             </div>
-                            <i class="bi bi-info-circle fs-3"></i>
+                            <i data-lucide="info" class="fs-3"></i>
                         </div>
                         <div class="mt-2 small border-top pt-2" id="infoDocsWrapper">
                             <strong>आवश्यक कागजातहरू:</strong> <span id="infoDocs">कुनै पनि छैन</span>
                         </div>
                     </div>
 
-                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3"><i class="bi bi-person me-2 text-primary"></i>निवेदकको विवरण</h6>
+                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3"><i data-lucide="user" class="me-2 text-primary"></i>निवेदकको विवरण</h6>
 
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
@@ -84,26 +84,28 @@
                         </div>
                     </div>
 
-                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3"><i class="bi bi-cloud-upload me-2 text-primary"></i>आवश्यक कागजात अपलोड</h6>
+                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3"><i data-lucide="cloud-upload" class="me-2 text-primary"></i>आवश्यक कागजात अपलोड</h6>
+                    <p class="text-muted small mb-3">नागरिकता, पासपोर्ट, लालपूर्जा, वा अन्य आवश्यक कागजात **PDF** वा इमेज (JPG, PNG) ढाँचामा अपलोड गर्नुहोस्।</p>
 
                     <div id="documentsContainer">
                         <div class="row g-2 mb-3 document-row">
                             <div class="col-md-5">
-                                <input type="text" name="document_names[]" class="form-control" placeholder="कागजातको नाम (उदा. नागरिकताको प्रतिलिपि)">
+                                <input type="text" name="document_names[]" class="form-control" placeholder="कागजातको नाम (उदा. नागरिकताको प्रतिलिपि / PDF)">
                             </div>
                             <div class="col-md-7">
-                                <input type="file" name="documents[]" class="form-control">
+                                <input type="file" name="documents[]" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                <small class="text-muted extra-small">PDF, JPG, PNG वा DOC (अधिकतम 5MB)</small>
                             </div>
                         </div>
                     </div>
 
                     <button type="button" class="btn btn-sm btn-outline-secondary mb-4" onclick="addDocumentRow()">
-                        <i class="bi bi-plus-circle me-1"></i> थप कागजात थप्नुहोस्
+                        <i data-lucide="plus-circle" class="me-1"></i> थप कागजात थप्नुहोस्
                     </button>
 
                     <div class="d-flex justify-content-end gap-2 border-top pt-3">
                         <a href="{{ route('citizen.applications.index') }}" class="btn btn-light">रद्द गर्नुहोस्</a>
-                        <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send me-1"></i> आवेदन पेश गर्नुहोस्</button>
+                        <button type="submit" class="btn btn-primary px-4"><i data-lucide="send" class="me-1"></i> आवेदन पेश गर्नुहोस्</button>
                     </div>
                 </form>
             </div>
@@ -136,13 +138,16 @@
                 <input type="text" name="document_names[]" class="form-control" placeholder="कागजातको नाम">
             </div>
             <div class="col-md-6">
-                <input type="file" name="documents[]" class="form-control">
+                <input type="file" name="documents[]" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.document-row').remove()"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-outline-danger w-100" onclick="this.closest('.document-row').remove()"><i data-lucide="trash-2"></i></button>
             </div>
         `;
         container.appendChild(newRow);
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 
     // Trigger on load if option selected

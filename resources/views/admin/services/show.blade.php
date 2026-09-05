@@ -3,7 +3,7 @@
 @section('content')
 <div class="mb-4">
     <a href="{{ route('admin.services.index') }}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> सेवा सूचीमा फर्कनुहोस्
+        <i data-lucide="arrow-left" class="me-1"></i> सेवा सूचीमा फर्कनुहोस्
     </a>
 </div>
 
@@ -11,7 +11,7 @@
     <div class="col-12 col-lg-4">
         <div class="card h-100">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-info-circle me-2 text-primary"></i>सेवा सम्बन्धी जानकारी</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="info" class="me-2 text-primary"></i>सेवा सम्बन्धी जानकारी</h6>
             </div>
             <div class="card-body">
                 <h5 class="fw-bold mb-2">{{ $service->name }}</h5>
@@ -43,7 +43,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($service->required_documents as $doc)
                             <li class="list-group-item px-0 py-1 small">
-                                <i class="bi bi-file-earmark-check text-primary me-2"></i>{{ $doc }}
+                                <i data-lucide="file-check" class="text-primary me-2"></i>{{ $doc }}
                             </li>
                         @endforeach
                     </ul>
@@ -53,7 +53,7 @@
             </div>
             <div class="card-footer bg-white text-end">
                 <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-sm btn-outline-primary">
-                    <i class="bi bi-pencil me-1"></i> सेवा सम्पादन गर्नुहोस्
+                    <i data-lucide="pencil" class="me-1"></i> सेवा सम्पादन गर्नुहोस्
                 </a>
             </div>
         </div>
@@ -62,7 +62,7 @@
     <div class="col-12 col-lg-8">
         <div class="card table-card h-100">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-file-earmark-text me-2 text-primary"></i>यस सेवाका लागि प्राप्त आवेदनहरू</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="file-text" class="me-2 text-primary"></i>यस सेवाका लागि प्राप्त आवेदनहरू</h6>
             </div>
             <div class="table-responsive">
                 <table class="table align-middle mb-0">
@@ -84,7 +84,7 @@
                                 <td>{{ $app->submitted_at ? $app->submitted_at->format('M d, Y') : $app->created_at->format('M d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.applications.show', $app) }}" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-eye"></i> विवरण
+                                        <i data-lucide="eye"></i> विवरण
                                     </a>
                                 </td>
                             </tr>

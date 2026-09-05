@@ -12,7 +12,7 @@
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <span class="input-group-text"><i data-lucide="lock"></i></span>
             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autocomplete="current-password" placeholder="••••••••">
         </div>
         @error('password')
@@ -21,7 +21,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-        <i class="bi bi-shield-check me-2"></i>Confirm Password
+        <i data-lucide="shield-check" class="me-2"></i>Confirm Password
     </button>
 </form>
 @endsection

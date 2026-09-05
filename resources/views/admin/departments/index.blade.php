@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h5 class="mb-0 font-weight-bold">सरकारी मन्त्रालय तथा विभागहरू</h5>
     <a href="{{ route('admin.departments.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> नयाँ विभाग थप्नुहोस्
+        <i data-lucide="plus" class="me-1"></i> नयाँ विभाग थप्नुहोस्
     </a>
 </div>
 
@@ -30,8 +30,8 @@
                             <div class="small text-muted text-truncate" style="max-width:300px;">{{ $dept->description ?? 'विवरण उपलब्ध छैन' }}</div>
                         </td>
                         <td>
-                            <div class="small"><i class="bi bi-telephone me-1 text-muted"></i>{{ $dept->phone ?? 'N/A' }}</div>
-                            <div class="small"><i class="bi bi-envelope me-1 text-muted"></i>{{ $dept->email ?? 'N/A' }}</div>
+                            <div class="small"><i data-lucide="telephone" class="me-1 text-muted"></i>{{ $dept->phone ?? 'N/A' }}</div>
+                            <div class="small"><i data-lucide="mail" class="me-1 text-muted"></i>{{ $dept->email ?? 'N/A' }}</div>
                         </td>
                         <td>
                             <span class="badge bg-light text-dark border fw-semibold">{{ $dept->services_count }} सेवाहरू</span>
@@ -46,13 +46,13 @@
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ route('admin.departments.edit', $dept) }}" class="btn btn-outline-secondary" title="सम्पादन">
-                                    <i class="bi bi-pencil"></i>
+                                    <i data-lucide="pencil"></i>
                                 </a>
                                 <form action="{{ route('admin.departments.destroy', $dept) }}" method="POST" onsubmit="return confirm('के तपाईं यो विभाग हटाउन चाहनुहुन्छ?');" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger" title="हटाउनुहोस्">
-                                        <i class="bi bi-trash"></i>
+                                        <i data-lucide="trash-2"></i>
                                     </button>
                                 </form>
                             </div>

@@ -18,7 +18,7 @@
     <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
         <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <span class="input-group-text"><i data-lucide="mail"></i></span>
             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="name@example.com">
         </div>
         @error('email')
@@ -27,11 +27,11 @@
     </div>
 
     <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-        <i class="bi bi-send me-2"></i>Email Password Reset Link
+        <i data-lucide="send" class="me-2"></i>Email Password Reset Link
     </button>
 
     <div class="text-center">
-        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold"><i class="bi bi-arrow-left me-1"></i>Back to Sign In</a>
+        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold"><i data-lucide="arrow-left" class="me-1"></i>Back to Sign In</a>
     </div>
 </form>
 @endsection

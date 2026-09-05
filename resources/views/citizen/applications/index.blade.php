@@ -7,7 +7,7 @@
         <span class="text-muted small">तपाईंले पेश गर्नुभएका सबै हालैका तथा पुराना सरकारी निवेदनहरू हेर्नुहोस्</span>
     </div>
     <a href="{{ route('citizen.applications.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> नयाँ निवेदन पेश गर्नुहोस्
+        <i data-lucide="plus" class="me-1"></i> नयाँ निवेदन पेश गर्नुहोस्
     </a>
 </div>
 
@@ -25,9 +25,9 @@
             </select>
         </div>
         <div class="col-12 col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-filter"></i> फिल्टर गर्नुहोस्</button>
+            <button type="submit" class="btn btn-secondary w-100"><i data-lucide="filter"></i> फिल्टर गर्नुहोस्</button>
             @if(request()->filled('status'))
-                <a href="{{ route('citizen.applications.index') }}" class="btn btn-outline-secondary" title="पुनः सेट गर्नुहोस्"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('citizen.applications.index') }}" class="btn btn-outline-secondary" title="पुनः सेट गर्नुहोस्"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -70,14 +70,14 @@
                         <td>{{ $app->submitted_at ? $app->submitted_at->format('M d, Y') : $app->created_at->format('M d, Y') }}</td>
                         <td>
                             <a href="{{ route('citizen.applications.show', $app) }}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> विवरण
+                                <i data-lucide="eye" class="me-1"></i> विवरण
                             </a>
                         </td>
                     </tr>
                 @empty
                     <tr>
                         <td colspan="7" class="text-center py-5 text-muted">
-                            <i class="bi bi-folder-x fs-2 d-block mb-2 text-muted"></i>
+                            <i data-lucide="folder-x" class="fs-2 d-block mb-2 text-muted"></i>
                             कुनै पनि निवेदन भेटिएन।<br>
                             <a href="{{ route('citizen.applications.create') }}" class="btn btn-sm btn-primary mt-2">नयाँ निवेदन पेश गर्नुहोस्</a>
                         </td>

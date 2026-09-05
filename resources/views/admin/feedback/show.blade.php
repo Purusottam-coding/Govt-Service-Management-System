@@ -3,7 +3,7 @@
 @section('content')
 <div class="mb-4">
     <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> प्रतिक्रिया सूचीमा फर्कनुहोस्
+        <i data-lucide="arrow-left" class="me-1"></i> प्रतिक्रिया सूचीमा फर्कनुहोस्
     </a>
 </div>
 
@@ -12,7 +12,7 @@
     <div class="col-12 col-lg-7">
         <div class="card mb-4">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-chat-left-quote me-2 text-primary"></i>{{ $feedback->subject }}</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="chat-left-quote" class="me-2 text-primary"></i>{{ $feedback->subject }}</h6>
                 <span class="badge-status {{ $feedback->getStatusBadgeClass() }}">{{ $feedback->status == 'open' ? 'खुला' : ($feedback->status == 'replied' ? 'जवाफ दिइएको' : 'बन्द') }}</span>
             </div>
             <div class="card-body p-4">
@@ -33,7 +33,7 @@
 
                 @if($feedback->admin_reply)
                     <div class="border-start border-3 border-primary ps-3 py-2 bg-primary-subtle rounded-end">
-                        <h6 class="fw-bold text-primary mb-1"><i class="bi bi-reply-fill me-1"></i> आधिकारिक जवाफ:</h6>
+                        <h6 class="fw-bold text-primary mb-1"><i data-lucide="reply-fill" class="me-1"></i> आधिकारिक जवाफ:</h6>
                         <p class="mb-0 text-dark small" style="white-space: pre-line;">{{ $feedback->admin_reply }}</p>
                     </div>
                 @endif
@@ -45,7 +45,7 @@
     <div class="col-12 col-lg-5">
         <div class="card">
             <div class="card-header bg-white py-3">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-reply me-2 text-primary"></i>जवाफ पठाउनुहोस्</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="reply" class="me-2 text-primary"></i>जवाफ पठाउनुहोस्</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.feedback.reply', $feedback) }}" method="POST">
@@ -71,7 +71,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-send me-1"></i> जवाफ पेश गर्नुहोस्</button>
+                    <button type="submit" class="btn btn-primary w-100"><i data-lucide="send" class="me-1"></i> जवाफ पेश गर्नुहोस्</button>
                 </form>
             </div>
         </div>

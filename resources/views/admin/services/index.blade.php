@@ -7,7 +7,7 @@
         <span class="text-muted small">उपलब्ध सार्वजनिक सेवाहरू, दस्तुर र आवश्यकताहरू व्यवस्थापन गर्नुहोस्</span>
     </div>
     <a href="{{ route('admin.services.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> नयाँ सेवा थप्नुहोस्
+        <i data-lucide="plus" class="me-1"></i> नयाँ सेवा थप्नुहोस्
     </a>
 </div>
 
@@ -28,9 +28,9 @@
             </select>
         </div>
         <div class="col-12 col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search me-1"></i> खोज्नुहोस्</button>
+            <button type="submit" class="btn btn-secondary w-100"><i data-lucide="search" class="me-1"></i> खोज्नुहोस्</button>
             @if(request()->hasAny(['search', 'department_id']))
-                <a href="{{ route('admin.services.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.services.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -61,7 +61,7 @@
                                 {{ $service->name }}
                             </a>
                             @if(!empty($service->required_documents))
-                                <div class="small text-muted"><i class="bi bi-paperclip me-1"></i>{{ count($service->required_documents) }} कागजात आवश्यक</div>
+                                <div class="small text-muted"><i data-lucide="paperclip" class="me-1"></i>{{ count($service->required_documents) }} कागजात आवश्यक</div>
                             @endif
                         </td>
                         <td>
@@ -71,7 +71,7 @@
                             रु. {{ number_format($service->fee, 2) }}
                         </td>
                         <td>
-                            <span class="small"><i class="bi bi-clock me-1 text-muted"></i>{{ $service->processing_days }} दिन</span>
+                            <span class="small"><i data-lucide="clock" class="me-1 text-muted"></i>{{ $service->processing_days }} दिन</span>
                         </td>
                         <td>
                             <span class="badge bg-info text-dark">{{ $service->applications_count }}</span>
@@ -86,16 +86,16 @@
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ route('admin.services.show', $service) }}" class="btn btn-outline-primary" title="विवरण हेर्नुहोस्">
-                                    <i class="bi bi-eye"></i>
+                                    <i data-lucide="eye"></i>
                                 </a>
                                 <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline-secondary" title="सम्पादन">
-                                    <i class="bi bi-pencil"></i>
+                                    <i data-lucide="pencil"></i>
                                 </a>
                                 <form action="{{ route('admin.services.destroy', $service) }}" method="POST" onsubmit="return confirm('के तपाईं यो सेवा हटाउन चाहनुहुन्छ?');" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger" title="हटाउनुहोस्">
-                                        <i class="bi bi-trash"></i>
+                                        <i data-lucide="trash-2"></i>
                                     </button>
                                 </form>
                             </div>

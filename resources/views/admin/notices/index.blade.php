@@ -7,7 +7,7 @@
         <span class="text-muted small">सार्वजनिक पोर्टलमा प्रदर्शन हुने घोषणाहरू प्रकाशित गर्नुहोस्</span>
     </div>
     <a href="{{ route('admin.notices.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> नयाँ सूचना थप्नुहोस्
+        <i data-lucide="plus" class="me-1"></i> नयाँ सूचना थप्नुहोस्
     </a>
 </div>
 
@@ -32,7 +32,7 @@
                             <div class="small text-muted text-truncate" style="max-width:400px;">{{ Str::limit($notice->content, 100) }}</div>
                         </td>
                         <td>
-                            <div class="small"><i class="bi bi-calendar-event me-1 text-muted"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : 'मस्यौदा (Draft)' }}</div>
+                            <div class="small"><i data-lucide="calendar" class="me-1 text-muted"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : 'मस्यौदा (Draft)' }}</div>
                         </td>
                         <td>
                             @if($notice->is_active)
@@ -44,13 +44,13 @@
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ route('admin.notices.edit', $notice) }}" class="btn btn-outline-secondary" title="सम्पादन">
-                                    <i class="bi bi-pencil"></i>
+                                    <i data-lucide="pencil"></i>
                                 </a>
                                 <form action="{{ route('admin.notices.destroy', $notice) }}" method="POST" onsubmit="return confirm('के तपाईं यो सूचना हटाउन चाहनुहुन्छ?');" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger" title="हटाउनुहोस्">
-                                        <i class="bi bi-trash"></i>
+                                        <i data-lucide="trash-2"></i>
                                     </button>
                                 </form>
                             </div>

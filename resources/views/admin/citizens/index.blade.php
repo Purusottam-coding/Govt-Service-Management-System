@@ -15,9 +15,9 @@
             <input type="text" name="search" class="form-control" placeholder="नागरिकको नाम, इमेल वा फोनद्वारा खोज्नुहोस्..." value="{{ request('search') }}">
         </div>
         <div class="col-12 col-md-3 d-flex gap-2">
-            <button type="submit" class="btn btn-secondary w-100"><i class="bi bi-search"></i> खोज्नुहोस्</button>
+            <button type="submit" class="btn btn-secondary w-100"><i data-lucide="search"></i> खोज्नुहोस्</button>
             @if(request()->filled('search'))
-                <a href="{{ route('admin.citizens.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('admin.citizens.index') }}" class="btn btn-outline-secondary" title="पुनः सेट"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -44,9 +44,13 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
-                                <div class="user-avatar" style="width:32px;height:32px;font-size:.8rem;">
-                                    {{ strtoupper(substr($citizen->name, 0, 1)) }}
-                                </div>
+                                @if($citizen->profile_photo)
+                                    <img src="{{ asset('storage/' . $citizen->profile_photo) }}" alt="{{ $citizen->name }}" class="rounded-circle object-fit-cover" style="width:32px;height:32px;">
+                                @else
+                                    <div class="user-avatar" style="width:32px;height:32px;font-size:.8rem;">
+                                        {{ strtoupper(substr($citizen->name, 0, 1)) }}
+                                    </div>
+                                @endif
                                 <span class="fw-bold text-dark">{{ $citizen->name }}</span>
                             </div>
                         </td>
@@ -60,7 +64,7 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.citizens.show', $citizen) }}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> प्रोफाइल हेर्नुहोस्
+                                <i data-lucide="eye" class="me-1"></i> प्रोफाइल हेर्नुहोस्
                             </a>
                         </td>
                     </tr>

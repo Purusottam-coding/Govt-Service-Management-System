@@ -37,10 +37,10 @@
         </div>
 
         <div class="d-flex align-items-center gap-3">
-            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> पासवर्ड सुरक्षित गर्नुहोस्</button>
+            <button type="submit" class="btn btn-primary"><i data-lucide="save" class="me-1"></i> पासवर्ड सुरक्षित गर्नुहोस्</button>
 
             @if (session('status') === 'password-updated')
-                <span class="text-success small fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>पासवर्ड अद्यावधिक गरियो।</span>
+                <span class="text-success small fw-semibold"><i data-lucide="check-circle-2" class="me-1"></i>पासवर्ड अद्यावधिक गरियो।</span>
             @endif
         </div>
     </form>

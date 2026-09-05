@@ -10,7 +10,7 @@
                     <div class="stat-value">{{ number_format($stats['total_applications']) }}</div>
                     <div class="stat-label">कुल निवेदनहरू</div>
                 </div>
-                <div class="stat-icon primary"><i class="bi bi-file-earmark-text"></i></div>
+                <div class="stat-icon primary"><i data-lucide="file-text"></i></div>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                     <div class="stat-value">{{ number_format($stats['pending_applications']) }}</div>
                     <div class="stat-label">छानबिन बाँकी (पेन्डिङ)</div>
                 </div>
-                <div class="stat-icon warning"><i class="bi bi-clock-history"></i></div>
+                <div class="stat-icon warning"><i data-lucide="history"></i></div>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                     <div class="stat-value">{{ number_format($stats['total_citizens']) }}</div>
                     <div class="stat-label">दर्ता नागरिकहरू</div>
                 </div>
-                <div class="stat-icon info"><i class="bi bi-people"></i></div>
+                <div class="stat-icon info"><i data-lucide="users"></i></div>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
     <div class="col-12 col-xl-8">
         <div class="card table-card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-file-earmark-text me-2 text-primary"></i>हालैका प्राप्त निवेदनहरू</span>
+                <span><i data-lucide="file-text" class="me-2 text-primary"></i>हालैका प्राप्त निवेदनहरू</span>
                 <a href="{{ route('admin.applications.index') }}" class="btn btn-sm btn-outline-primary">सबै हेर्नुहोस्</a>
             </div>
             <div class="table-responsive">
@@ -109,7 +109,7 @@
                                 <td>{{ $app->submitted_at ? $app->submitted_at->format('M d, Y') : $app->created_at->format('M d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.applications.show', $app) }}" class="btn btn-sm btn-action btn-outline-primary">
-                                        <i class="bi bi-eye"></i> हेर्नुहोस्
+                                        <i data-lucide="eye"></i> हेर्नुहोस्
                                     </a>
                                 </td>
                             </tr>
@@ -128,7 +128,7 @@
     <div class="col-12 col-xl-4">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-chat-dots me-2 text-primary"></i>नागरिक गुनासो / सुझाव</span>
+                <span><i data-lucide="message-square" class="me-2 text-primary"></i>नागरिक गुनासो / सुझाव</span>
                 <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-outline-primary">सबै हेर्नुहोस्</a>
             </div>
             <div class="card-body p-0">

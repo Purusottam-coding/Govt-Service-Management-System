@@ -3,17 +3,17 @@
 @section('content')
 <div class="mb-4 d-flex justify-content-between align-items-center no-print">
     <a href="{{ route('citizen.applications.show', $application) }}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> निवेदन विवरणमा फर्कनुहोस्
+        <i data-lucide="arrow-left" class="me-1"></i> निवेदन विवरणमा फर्कनुहोस्
     </a>
     <button onclick="window.print()" class="btn btn-sm btn-primary">
-        <i class="bi bi-printer me-1"></i> रसिद प्रिन्ट गर्नुहोस्
+        <i data-lucide="printer" class="me-1"></i> रसिद प्रिन्ट गर्नुहोस्
     </button>
 </div>
 
 <div class="receipt shadow-sm">
     <div class="receipt-header">
         <div class="brand-icon-sm mx-auto mb-2" style="width:48px;height:48px;background:linear-gradient(135deg, var(--primary), var(--accent));border-radius:.75rem;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.2rem;">
-            <i class="bi bi-building"></i>
+            <i data-lucide="building-2"></i>
         </div>
         <h4 class="fw-bold mb-0">नेपाल सरकार — सरकारी सेवा प्रणाली</h4>
         <span class="text-muted small text-uppercase tracking-wider">आधिकारिक भुक्तानी रसिद (Payment Receipt)</span>

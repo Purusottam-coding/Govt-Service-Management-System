@@ -5,9 +5,9 @@
     <div class="col-12 col-md-8">
         <div class="card">
             <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0 fw-bold"><i class="bi bi-chat-dots me-2 text-primary"></i>गुनासो, समस्या वा सुझाव पेश फारम</h6>
+                <h6 class="mb-0 fw-bold"><i data-lucide="message-square" class="me-2 text-primary"></i>गुनासो, समस्या वा सुझाव पेश फारम</h6>
                 <a href="{{ route('citizen.feedback.index') }}" class="btn btn-sm btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-1"></i> फर्कनुहोस्
+                    <i data-lucide="arrow-left" class="me-1"></i> फर्कनुहोस्
                 </a>
             </div>
             <div class="card-body p-4">
@@ -47,7 +47,7 @@
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('citizen.feedback.index') }}" class="btn btn-light">रद्द गर्नुहोस्</a>
-                        <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send me-1"></i> दर्ता गर्नुहोस्</button>
+                        <button type="submit" class="btn btn-primary px-4"><i data-lucide="send" class="me-1"></i> दर्ता गर्नुहोस्</button>
                     </div>
                 </form>
             </div>

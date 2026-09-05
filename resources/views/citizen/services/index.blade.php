@@ -13,7 +13,7 @@
     <form action="{{ route('citizen.services.index') }}" method="GET" class="row g-2">
         <div class="col-12 col-md-6">
             <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <span class="input-group-text"><i data-lucide="search"></i></span>
                 <input type="text" name="search" class="form-control" placeholder="सेवाको नाम वा शब्दद्वारा खोज्नुहोस्..." value="{{ request('search') }}">
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="col-12 col-md-2 d-flex gap-2">
             <button type="submit" class="btn btn-primary w-100">खोज्नुहोस्</button>
             @if(request()->hasAny(['search', 'department_id']))
-                <a href="{{ route('citizen.services.index') }}" class="btn btn-outline-secondary" title="पुनः सेट गर्नुहोस्"><i class="bi bi-x-lg"></i></a>
+                <a href="{{ route('citizen.services.index') }}" class="btn btn-outline-secondary" title="पुनः सेट गर्नुहोस्"><i data-lucide="x"></i></a>
             @endif
         </div>
     </form>
@@ -46,16 +46,16 @@
                 <p class="small text-muted mb-3 flex-grow-1">{{ Str::limit($service->description, 100) }}</p>
 
                 <div class="mb-3 small text-secondary">
-                    <div><i class="bi bi-clock me-1"></i><strong>अनुमानित समय:</strong> {{ $service->processing_days }} दिन</div>
+                    <div><i data-lucide="clock" class="me-1"></i><strong>अनुमानित समय:</strong> {{ $service->processing_days }} दिन</div>
                     @if(!empty($service->required_documents))
-                        <div><i class="bi bi-paperclip me-1"></i><strong>आवश्यक कागजात:</strong> {{ count($service->required_documents) }} वटा</div>
+                        <div><i data-lucide="paperclip" class="me-1"></i><strong>आवश्यक कागजात:</strong> {{ count($service->required_documents) }} वटा</div>
                     @endif
                 </div>
 
                 <div class="service-meta">
                     <span class="service-fee">{{ $service->fee > 0 ? 'रु. ' . number_format($service->fee, 2) : 'निःशुल्क' }}</span>
                     <a href="{{ route('citizen.services.show', $service) }}" class="btn btn-sm btn-primary">
-                        हेर्नुहोस् र आवेदन दिनुहोस् <i class="bi bi-arrow-right ms-1"></i>
+                        हेर्नुहोस् र आवेदन दिनुहोस् <i data-lucide="arrow-right" class="ms-1"></i>
                     </a>
                 </div>
             </div>
@@ -63,7 +63,7 @@
     @empty
         <div class="col-12">
             <div class="text-center py-5 bg-white rounded border">
-                <i class="bi bi-search text-muted fs-1 mb-2 d-block"></i>
+                <i data-lucide="search" class="text-muted fs-1 mb-2 d-block"></i>
                 <h6 class="fw-bold text-muted">कुनै पनि सरकारी सेवा भेटिएन।</h6>
                 <p class="small text-muted">कृपया अर्को शब्द वा विभाग चयन गरी पुनः खोज्नुहोस्।</p>
             </div>

@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand-lg citizen-navbar sticky-top">
     <div class="container">
         <a class="navbar-brand fs-4" href="{{ route('welcome') }}">
-            <span class="brand-icon-sm" style="width:38px;height:38px;font-size:1.1rem;"><i class="bi bi-building"></i></span>
+            <span class="brand-icon-sm" style="width:38px;height:38px;font-size:1.1rem;"><i data-lucide="building-2"></i></span>
             नेपाल सरकार
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav">
@@ -28,7 +28,7 @@
                 @auth
                     <li class="nav-item ms-lg-3">
                         <a href="{{ route('dashboard') }}" class="btn btn-primary px-4 fw-bold">
-                            <i class="bi bi-speedometer2 me-1"></i> ड्यासबोर्डमा जानुहोस्
+                            <i data-lucide="gauge" class="me-1"></i> ड्यासबोर्डमा जानुहोस्
                         </a>
                     </li>
                 @else
@@ -50,44 +50,44 @@
         <div class="row align-items-center g-5">
             <div class="col-12 col-lg-7">
                 <span class="badge bg-white text-primary px-3 py-2 rounded-pill fw-semibold text-uppercase tracking-wider mb-3">
-                    <i class="bi bi-shield-check me-1"></i> नेपाल सरकारको आधिकारिक पोर्टल
+                    <i data-lucide="shield-check" class="me-1"></i> नेपाल सरकारको आधिकारिक पोर्टल
                 </span>
                 <h1 class="display-4 fw-black">छरितो, सुरक्षित र सुलभ अनलाइन सरकारी सेवाहरू</h1>
                 <p class="lead mb-4">सवारी चालक अनुमतिपत्र, राहदानी, जन्म दर्ता, विवाह दर्ता, व्यावसायिक इजाजत पत्र तथा घर नक्सा स्वीकृतिका लागि घरैबाट अनलाइन आवेदन दिनुहोस् र प्रत्यक्ष ट्र्याकिङ गर्नुहोस्।</p>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
                     @auth
                         <a href="{{ route('citizen.services.index') }}" class="btn btn-light text-primary btn-hero">
-                            <i class="bi bi-grid me-2"></i> सबै सेवाहरू हेर्नुहोस्
+                            <i data-lucide="grid" class="me-2"></i> सबै सेवाहरू हेर्नुहोस्
                         </a>
                     @else
                         <a href="{{ route('register') }}" class="btn btn-light text-primary btn-hero">
-                            <i class="bi bi-person-plus me-2"></i> आवेदन सुरु गर्नुहोस्
+                            <i data-lucide="user-plus" class="me-2"></i> आवेदन सुरु गर्नुहोस्
                         </a>
                         <a href="{{ route('login') }}" class="btn btn-outline-light btn-hero">
-                            <i class="bi bi-box-arrow-in-right me-2"></i> नागरिक लगइन
+                            <i data-lucide="log-in" class="me-2"></i> नागरिक लगइन
                         </a>
                     @endauth
                 </div>
             </div>
             <div class="col-12 col-lg-5 text-center">
                 <div class="p-4 bg-white text-dark rounded-4 shadow-lg fade-in text-start border">
-                    <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-lightning-charge me-2"></i>मुख्य सुविधाहरू</h5>
+                    <h5 class="fw-bold mb-3 text-primary"><i data-lucide="zap" class="me-2"></i>मुख्य सुविधाहरू</h5>
                     <div class="d-flex align-items-start gap-3 mb-3">
-                        <div class="bg-primary-subtle text-primary p-2 rounded-3 fs-4"><i class="bi bi-file-earmark-arrow-up"></i></div>
+                        <div class="bg-primary-subtle text-primary p-2 rounded-3 fs-4"><i data-lucide="file-up"></i></div>
                         <div>
                             <h6 class="fw-bold mb-0">डिजिटल कागजात अपलोड</h6>
                             <small class="text-muted">आवश्यक नागरिकता, फोटो र अन्य प्रमाण-पत्रहरू अनलाइन सुरक्षित अपलोड गर्नुहोस्।</small>
                         </div>
                     </div>
                     <div class="d-flex align-items-start gap-3 mb-3">
-                        <div class="bg-success-subtle text-success p-2 rounded-3 fs-4"><i class="bi bi-credit-card"></i></div>
+                        <div class="bg-success-subtle text-success p-2 rounded-3 fs-4"><i data-lucide="credit-card"></i></div>
                         <div>
                             <h6 class="fw-bold mb-0">तत्काल डिजिटल भुक्तानी र रसिद</h6>
                             <small class="text-muted">सरकारी दस्तुर अनलाइन भुक्तानी गरी तत्काल कम्प्युटरकृत रसिद प्राप्त गर्नुहोस्।</small>
                         </div>
                     </div>
                     <div class="d-flex align-items-start gap-3">
-                        <div class="bg-purple-subtle text-purple p-2 rounded-3 fs-4" style="color:#6c5ce7;"><i class="bi bi-clock-history"></i></div>
+                        <div class="bg-purple-subtle text-purple p-2 rounded-3 fs-4" style="color:#6c5ce7;"><i data-lucide="history"></i></div>
                         <div>
                             <h6 class="fw-bold mb-0">प्रत्यक्ष आवेदन ट्र्याकिङ</h6>
                             <small class="text-muted">आफ्नो निवेदनको अवस्था पेश गरिएको देखि स्वीकृत हुनेसम्म प्रत्यक्ष हेर्नुहोस्।</small>
@@ -140,7 +140,7 @@
                 <p class="text-secondary mb-4">सरकारी सेवाहरू, नयाँ नियमहरू, सार्वजनिक बिदा तथा प्रणाली अपडेटसम्बन्धी सूचनाहरू।</p>
                 <div class="card p-3 bg-light border-0">
                     <div class="d-flex align-items-center gap-3">
-                        <i class="bi bi-headset fs-2 text-primary"></i>
+                        <i data-lucide="headphones" class="fs-2 text-primary"></i>
                         <div>
                             <h6 class="fw-bold mb-0">सहयोग वा सोधपुछ चाहिएमा?</h6>
                             <span class="small text-muted">आफ्नो नागरिक खाता मार्फत सुझाव वा गुनासो पेश गर्न सक्नुहुन्छ।</span>
@@ -153,7 +153,7 @@
                     <div class="notice-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <h6 class="fw-bold text-dark mb-0">{{ $notice->title }}</h6>
-                            <span class="text-muted extra-small"><i class="bi bi-calendar3 me-1"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : '' }}</span>
+                            <span class="text-muted extra-small"><i data-lucide="calendar" class="me-1"></i>{{ $notice->published_at ? $notice->published_at->format('M d, Y') : '' }}</span>
                         </div>
                         <p class="small text-muted mb-0">{{ $notice->content }}</p>
                     </div>

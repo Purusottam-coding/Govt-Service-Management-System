@@ -9,7 +9,7 @@
     </header>
 
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmUserDeletionModal">
-        <i class="bi bi-trash me-1"></i> खाता मेटाउनुहोस्
+        <i data-lucide="trash-2" class="me-1"></i> खाता मेटाउनुहोस्
     </button>
 
     <!-- Deletion Confirmation Modal -->
