@@ -167,6 +167,12 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card-footer bg-white py-2.5 px-3 d-flex justify-content-between align-items-center border-top">
+                <span class="small text-muted fw-medium">हालैका {{ count($recentApplications) }} वटा निवेदनहरू</span>
+                <a href="{{ route('admin.applications.index') }}" class="btn btn-sm btn-primary fw-semibold">
+                    सबै प्राप्त निवेदनहरू व्यवस्थापन <i data-lucide="arrow-right" class="ms-1"></i>
+                </a>
+            </div>
         </div>
     </div>
 
