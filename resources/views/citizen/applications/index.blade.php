@@ -55,7 +55,13 @@
                         <td>{{ $app->service->department->name ?? 'N/A' }}</td>
                         <td>
                             @if($app->payment)
-                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">चुक्ता भएको</span>
+                                @if($app->payment->status === 'pending')
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-semibold">प्रमाणीकरणमा</span>
+                                @elseif($app->payment->status === 'completed')
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">चुक्ता भएको</span>
+                                @else
+                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-semibold">असफल</span>
+                                @endif
                             @elseif(($app->service->fee ?? 0) > 0)
                                 <a href="{{ route('citizen.payments.create', $app) }}" class="badge bg-secondary-subtle text-secondary border border-secondary-subtle text-decoration-none fw-semibold">
                                     भुक्तानी गर्नुहोस् (रु. {{ number_format($app->service->fee, 2) }})

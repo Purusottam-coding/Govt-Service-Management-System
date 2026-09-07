@@ -37,17 +37,15 @@
                     <div id="qrCodeData_{{ $type }}" data-url="{{ $qrCode->qr_code_url }}" data-label="{{ $qrCode->getQrTypeLabel() }}" class="d-none"></div>
                 @endforeach
 
-                <form action="{{ route('citizen.payments.store', $application) }}" method="POST">
+                <form action="{{ route('citizen.payments.store', $application) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-4">
                         <label for="payment_method" class="form-label fw-bold">भुक्तानीको माध्यम छान्नुहोस् <span class="text-danger">*</span></label>
                         <select name="payment_method" id="payment_method" class="form-select form-select-lg @error('payment_method') is-invalid @enderror" required>
-                            <option value="online" selected>eSewa / Khalti / Mobile Banking (डिजिटल वालेट)</option>
                             <option value="esewa">eSewa</option>
                             <option value="khalti">Khalti</option>
                             <option value="mobile_banking">Mobile Banking</option>
-                            <option value="bank_transfer">बैंक भौचर / ट्रान्सफर</option>
                             <option value="cash">सरकारी काउन्टर (नगद)</option>
                         </select>
                         @error('payment_method')
@@ -61,8 +59,23 @@
                         <div>अनलाइन भुक्तानी छनोट गर्दा तपाईंलाई सुरक्षित भुक्तानी गेटवे (eSewa / Khalti) मा पठाइनेछ।</div>
                     </div>
 
+                    <div class="mb-4" id="statementUploadGroup">
+                        <label for="payment_statement" class="form-label fw-bold">भुक्तानी स्टेटमेन्ट / प्रमाण फोटो <span class="text-danger" id="statementRequiredMark">*</span></label>
+                        <input
+                            type="file"
+                            name="payment_statement"
+                            id="payment_statement"
+                            accept="image/png,image/jpeg,image/webp"
+                            class="form-control @error('payment_statement') is-invalid @enderror"
+                        >
+                        <div class="form-text">QR स्क्यान गरेर भुक्तानी गरेपछि screenshot वा payment statement image अपलोड गर्नुहोस् (JPG, PNG, WEBP, max 4MB)।</div>
+                        @error('payment_statement')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-success btn-lg w-100 fw-bold">
-                        <i data-lucide="lock" class="me-1"></i> रु. {{ number_format($application->service->fee, 2) }} भुक्तानी गर्नुहोस्
+                        <i data-lucide="lock" class="me-1"></i> रु. {{ number_format($application->service->fee, 2) }} भुक्तानी प्रमाण पेश गर्नुहोस्
                     </button>
                 </form>
             </div>
@@ -78,6 +91,9 @@
         const qrCodeImage = document.getElementById('qrCodeImage');
         const qrCodeTitle = document.getElementById('qrCodeTitle');
         const qrCodeInstruction = document.getElementById('qrCodeInstruction');
+        const paymentStatementInput = document.getElementById('payment_statement');
+        const statementUploadGroup = document.getElementById('statementUploadGroup');
+        const statementRequiredMark = document.getElementById('statementRequiredMark');
 
         // Function to show QR code based on selected payment method
         function showQrCode() {
@@ -94,6 +110,17 @@
                 qrCodeSection.classList.remove('d-none');
             } else {
                 qrCodeSection.classList.add('d-none');
+            }
+
+            const isCashPayment = selectedMethod === 'cash';
+            if (isCashPayment) {
+                statementUploadGroup.classList.add('d-none');
+                statementRequiredMark.classList.add('d-none');
+                paymentStatementInput.required = false;
+            } else {
+                statementUploadGroup.classList.remove('d-none');
+                statementRequiredMark.classList.remove('d-none');
+                paymentStatementInput.required = true;
             }
         }
 

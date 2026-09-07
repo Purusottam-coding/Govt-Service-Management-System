@@ -78,6 +78,13 @@
         </div>
     @endif
 
+    @if(session('info'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i data-lucide="info" class="me-2"></i>{{ session('info') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     @if($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i data-lucide="alert-triangle" class="me-2"></i>
@@ -92,4 +99,41 @@
 
     @yield('content')
 </div>
+
+@if(session('payment_verification_popup'))
+    <div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success-subtle">
+                    <h5 class="modal-title fw-bold" id="verificationModalLabel">
+                        <i data-lucide="badge-check" class="me-1"></i> भुक्तानी सूचना
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ session('payment_verification_popup_message', 'तपाईंको भुक्तानी प्रमाण verification process मा पठाइएको छ।') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ठीक छ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 @endsection
+
+@push('scripts')
+@if(session('payment_verification_popup'))
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modalElement = document.getElementById('verificationModal');
+        if (!modalElement) {
+            return;
+        }
+
+        const verificationModal = new bootstrap.Modal(modalElement);
+        verificationModal.show();
+    });
+</script>
+@endif
+@endpush

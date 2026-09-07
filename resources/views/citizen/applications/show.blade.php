@@ -5,10 +5,14 @@
     <a href="{{ route('citizen.applications.index') }}" class="btn btn-sm btn-outline-secondary">
         <i data-lucide="arrow-left" class="me-1"></i> मेरा निवेदनहरूमा फर्कनुहोस्
     </a>
-    @if($application->payment)
+    @if($application->payment && $application->payment->status === 'completed')
         <a href="{{ route('citizen.payments.receipt', $application) }}" class="btn btn-sm btn-outline-success">
             <i data-lucide="receipt" class="me-1"></i> भुक्तानी रसिद हेर्नुहोस्
         </a>
+    @elseif($application->payment && $application->payment->status === 'pending')
+        <span class="badge bg-primary text-white px-3 py-2">
+            <i data-lucide="clock-3" class="me-1"></i> भुक्तानी प्रमाण प्रमाणीकरणमा
+        </span>
     @elseif(($application->service->fee ?? 0) > 0)
         <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-primary">
             <i data-lucide="credit-card" class="me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
@@ -116,7 +120,13 @@
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-muted">भुक्तानी स्थिति:</span>
                     @if($application->payment)
-                        <span class="badge bg-success">चुक्ता भएको</span>
+                        @if($application->payment->status === 'pending')
+                            <span class="badge bg-primary">प्रमाणीकरणमा</span>
+                        @elseif($application->payment->status === 'completed')
+                            <span class="badge bg-success">चुक्ता भएको</span>
+                        @else
+                            <span class="badge bg-danger">असफल</span>
+                        @endif
                     @elseif(($application->service->fee ?? 0) > 0)
                         <span class="badge bg-primary text-white">बाँकी (बाँकी भुक्तानी)</span>
                     @else
@@ -135,6 +145,13 @@
                     <div class="small">
                         <div><strong>कारोबार नं (Transaction ID):</strong> {{ $application->payment->transaction_id }}</div>
                         <div><strong>भुक्तानी मिति:</strong> {{ $application->payment->paid_at ? $application->payment->paid_at->format('M d, Y') : '' }}</div>
+                        @if($application->payment->payment_statement)
+                            <div class="mt-2">
+                                <a href="{{ Storage::url($application->payment->payment_statement) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i data-lucide="image" class="me-1"></i> भुक्तानी स्टेटमेन्ट हेर्नुहोस्
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>

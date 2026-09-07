@@ -72,9 +72,19 @@
                         </td>
                         <td>
                             @if($app->payment)
-                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">
-                                    <i data-lucide="check-circle" class="me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
-                                </span>
+                                @if($app->payment->status === 'pending')
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-semibold">
+                                        <i data-lucide="clock-3" class="me-1"></i>प्रमाणीकरणमा (रु. {{ number_format($app->payment->amount, 2) }})
+                                    </span>
+                                @elseif($app->payment->status === 'completed')
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">
+                                        <i data-lucide="check-circle" class="me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
+                                    </span>
+                                @else
+                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-semibold">
+                                        <i data-lucide="x-circle" class="me-1"></i>असफल
+                                    </span>
+                                @endif
                             @elseif(($app->service->fee ?? 0) > 0)
                                 <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle fw-semibold">
                                     <i data-lucide="clock" class="me-1"></i>बाँकी (रु. {{ number_format($app->service->fee, 2) }})

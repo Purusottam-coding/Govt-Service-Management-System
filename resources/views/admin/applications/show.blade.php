@@ -142,6 +142,16 @@
                         <span class="fw-bold text-success">रु. {{ number_format($application->payment->amount, 2) }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">भुक्तानी स्थिति:</span>
+                        @if($application->payment->status === 'pending')
+                            <span class="badge bg-primary">प्रमाणीकरणमा</span>
+                        @elseif($application->payment->status === 'completed')
+                            <span class="badge bg-success">चुक्ता भएको</span>
+                        @else
+                            <span class="badge bg-danger">असफल</span>
+                        @endif
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
                         <span class="text-muted">भुक्तानी माध्यम:</span>
                         <span class="fw-semibold text-uppercase">{{ $application->payment->payment_method }}</span>
                     </div>
@@ -153,6 +163,13 @@
                         <span class="text-muted">भुक्तानी मिति:</span>
                         <span class="small">{{ $application->payment->paid_at ? $application->payment->paid_at->format('M d, Y') : 'N/A' }}</span>
                     </div>
+                    @if($application->payment->payment_statement)
+                        <div class="mt-3">
+                            <a href="{{ Storage::url($application->payment->payment_statement) }}" target="_blank" class="btn btn-sm btn-outline-primary w-100">
+                                <i data-lucide="image" class="me-1"></i> भुक्तानी स्टेटमेन्ट हेर्नुहोस्
+                            </a>
+                        </div>
+                    @endif
                 @else
                     <div class="text-center py-3">
                         <i data-lucide="alert-circle" class="text-warning fs-3 mb-2 d-block"></i>
