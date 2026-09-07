@@ -76,7 +76,7 @@
                                     <i data-lucide="check-circle" class="me-1"></i>चुक्ता (रु. {{ number_format($app->payment->amount, 2) }})
                                 </span>
                             @elseif(($app->service->fee ?? 0) > 0)
-                                <span class="badge bg-warning-subtle text-warning border border-warning-subtle fw-semibold">
+                                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle fw-semibold">
                                     <i data-lucide="clock" class="me-1"></i>बाँकी (रु. {{ number_format($app->service->fee, 2) }})
                                 </span>
                             @else

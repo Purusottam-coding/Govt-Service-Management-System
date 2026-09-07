@@ -29,6 +29,9 @@
         <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
             <i data-lucide="settings"></i> सरकारी सेवाहरू
         </a>
+        <a href="{{ route('admin.qr-codes.index') }}" class="nav-link {{ request()->routeIs('admin.qr-codes.*') ? 'active' : '' }}">
+            <i data-lucide="qr-code"></i> भुक्तानी QR कोड
+        </a>
         <a href="{{ route('admin.applications.index') }}" class="nav-link {{ request()->routeIs('admin.applications.*') ? 'active' : '' }}">
             <i data-lucide="file-text"></i> प्राप्त निवेदनहरू
         </a>

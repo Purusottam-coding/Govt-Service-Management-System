@@ -57,7 +57,7 @@
                             @if($app->payment)
                                 <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">चुक्ता भएको</span>
                             @elseif(($app->service->fee ?? 0) > 0)
-                                <a href="{{ route('citizen.payments.create', $app) }}" class="badge bg-warning-subtle text-warning border border-warning-subtle text-decoration-none fw-semibold">
+                                <a href="{{ route('citizen.payments.create', $app) }}" class="badge bg-secondary-subtle text-secondary border border-secondary-subtle text-decoration-none fw-semibold">
                                     भुक्तानी गर्नुहोस् (रु. {{ number_format($app->service->fee, 2) }})
                                 </a>
                             @else

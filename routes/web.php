@@ -63,6 +63,9 @@ Route::middleware(['auth', 'admin'])
         Route::get('/applications/{application}', [Admin\ApplicationController::class, 'show'])->name('applications.show');
         Route::patch('/applications/{application}/status', [Admin\ApplicationController::class, 'updateStatus'])->name('applications.status');
 
+        Route::resource('qr-codes', Admin\QrCodeController::class)->names('qr-codes');
+        Route::patch('/qr-codes/{qrCode}/toggle-status', [Admin\QrCodeController::class, 'toggleStatus'])->name('qr-codes.toggle-status');
+
         Route::get('/citizens', [Admin\CitizenController::class, 'index'])->name('citizens.index');
         Route::get('/citizens/{citizen}', [Admin\CitizenController::class, 'show'])->name('citizens.show');
 

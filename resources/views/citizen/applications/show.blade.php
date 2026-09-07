@@ -10,14 +10,14 @@
             <i data-lucide="receipt" class="me-1"></i> भुक्तानी रसिद हेर्नुहोस्
         </a>
     @elseif(($application->service->fee ?? 0) > 0)
-        <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-warning">
+        <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-primary">
             <i data-lucide="credit-card" class="me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
         </a>
     @endif
 </div>
 
 <!-- Visual Status Tracker -->
-<div class="card mb-4 p-4 bg-white">
+<div class="card mb-4 p-4">
     <h6 class="fw-bold text-center mb-3">निवेदन प्रगति स्थिति</h6>
 
     <ul class="status-tracker">
@@ -118,14 +118,14 @@
                     @if($application->payment)
                         <span class="badge bg-success">चुक्ता भएको</span>
                     @elseif(($application->service->fee ?? 0) > 0)
-                        <span class="badge bg-warning text-dark">बाँकी (बाँकी भुक्तानी)</span>
+                        <span class="badge bg-primary text-white">बाँकी (बाँकी भुक्तानी)</span>
                     @else
                         <span class="badge bg-light text-muted">निःशुल्क</span>
                     @endif
                 </div>
 
                 @if(!$application->payment && ($application->service->fee ?? 0) > 0)
-                    <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-warning w-100 fw-bold">
+                    <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-primary w-100 fw-bold">
                         <i data-lucide="credit-card" class="me-1"></i> भुक्तानी गर्नुहोस्
                     </a>
                 @endif

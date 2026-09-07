@@ -24,6 +24,19 @@
                     </div>
                 </div>
 
+                <!-- QR Code Section -->
+                <div id="qrCodeSection" class="alert alert-success mb-4 text-center d-none">
+                    <i data-lucide="qr-code" class="fs-2 mb-2 d-block mx-auto"></i>
+                    <h6 class="fw-bold mb-2" id="qrCodeTitle">QR कोड स्क्यान गर्नुहोस्</h6>
+                    <img id="qrCodeImage" src="" alt="Payment QR Code" class="img-fluid mx-auto d-block" style="max-width: 200px; border: 3px solid #10b981; border-radius: 12px;">
+                    <p class="small mb-0 mt-2" id="qrCodeInstruction">माथिको QR कोड स्क्यान गरी भुक्तानी गर्नुहोस्</p>
+                </div>
+
+                <!-- Hidden QR code data -->
+                @foreach($qrCodes as $type => $qrCode)
+                    <div id="qrCodeData_{{ $type }}" data-url="{{ $qrCode->qr_code_url }}" data-label="{{ $qrCode->getQrTypeLabel() }}" class="d-none"></div>
+                @endforeach
+
                 <form action="{{ route('citizen.payments.store', $application) }}" method="POST">
                     @csrf
 
@@ -31,6 +44,9 @@
                         <label for="payment_method" class="form-label fw-bold">भुक्तानीको माध्यम छान्नुहोस् <span class="text-danger">*</span></label>
                         <select name="payment_method" id="payment_method" class="form-select form-select-lg @error('payment_method') is-invalid @enderror" required>
                             <option value="online" selected>eSewa / Khalti / Mobile Banking (डिजिटल वालेट)</option>
+                            <option value="esewa">eSewa</option>
+                            <option value="khalti">Khalti</option>
+                            <option value="mobile_banking">Mobile Banking</option>
                             <option value="bank_transfer">बैंक भौचर / ट्रान्सफर</option>
                             <option value="cash">सरकारी काउन्टर (नगद)</option>
                         </select>
@@ -53,4 +69,40 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentMethodSelect = document.getElementById('payment_method');
+        const qrCodeSection = document.getElementById('qrCodeSection');
+        const qrCodeImage = document.getElementById('qrCodeImage');
+        const qrCodeTitle = document.getElementById('qrCodeTitle');
+        const qrCodeInstruction = document.getElementById('qrCodeInstruction');
+
+        // Function to show QR code based on selected payment method
+        function showQrCode() {
+            const selectedMethod = paymentMethodSelect.value;
+            const qrCodeData = document.getElementById('qrCodeData_' + selectedMethod);
+
+            if (qrCodeData) {
+                const qrUrl = qrCodeData.getAttribute('data-url');
+                const qrLabel = qrCodeData.getAttribute('data-label');
+
+                qrCodeImage.src = qrUrl;
+                qrCodeTitle.textContent = 'QR कोड स्क्यान गर्नुहोस् - ' + qrLabel;
+                qrCodeInstruction.textContent = 'माथिको QR कोड स्क्यान गरी ' + qrLabel + ' मा रु. {{ number_format($application->service->fee, 2) }} भुक्तानी गर्नुहोस्';
+                qrCodeSection.classList.remove('d-none');
+            } else {
+                qrCodeSection.classList.add('d-none');
+            }
+        }
+
+        // Add event listener to payment method select
+        paymentMethodSelect.addEventListener('change', showQrCode);
+
+        // Check on page load if there's a QR code for the default selection
+        showQrCode();
+    });
+</script>
+@endpush
 @endsection

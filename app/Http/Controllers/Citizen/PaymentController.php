@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Citizen;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Payment;
+use App\Models\PaymentQrCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -21,8 +22,10 @@ class PaymentController extends Controller
                 ->with('info', 'Payment has already been completed for this application.');
         }
 
-        $application->load('service');
-        return view('citizen.payments.create', compact('application'));
+        $application->load(['service', 'payment']);
+        $qrCodes = PaymentQrCode::active()->get()->keyBy('qr_type');
+
+        return view('citizen.payments.create', compact('application', 'qrCodes'));
     }
 
     public function store(Request $request, Application $application)
@@ -32,7 +35,7 @@ class PaymentController extends Controller
         }
 
         $validated = $request->validate([
-            'payment_method' => 'required|in:cash,online,bank_transfer',
+            'payment_method' => 'required|in:cash,online,bank_transfer,esewa,khalti,mobile_banking',
         ]);
 
         $amount = $application->service->fee;
