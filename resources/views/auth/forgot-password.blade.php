@@ -4,7 +4,7 @@
 
 @section('content')
 <h3>Forgot Password?</h3>
-<p class="auth-subtitle">No problem. Enter your email address and we will email you a password reset link.</p>
+<p class="auth-subtitle">No problem. Enter your email address and we will send you a 6-digit OTP code.</p>
 
 @if (session('status'))
     <div class="alert alert-success mb-3" role="alert">
@@ -27,7 +27,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
-        <i data-lucide="send" class="me-2"></i>Email Password Reset Link
+        <i data-lucide="send" class="me-2"></i>Send OTP Code
     </button>
 
     <div class="text-center">
