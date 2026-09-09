@@ -7,8 +7,8 @@
 <nav class="navbar navbar-expand-lg citizen-navbar sticky-top">
     <div class="container">
         <a class="navbar-brand fs-4" href="{{ route('welcome') }}">
-            <span class="brand-icon-sm" style="width:38px;height:38px;font-size:1.1rem;"><i data-lucide="building-2"></i></span>
-            नेपाल सरकार
+             <img src="{{ asset('images/Emblem_of_Nepal.png') }}" alt="Nepal Government Logo" style="height: 40px; width: auto;" class="me-2">
+            बाह्रदशी गाउँपालिका
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#publicNav">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
                 <span class="badge bg-white text-primary px-3 py-2 rounded-pill fw-semibold text-uppercase tracking-wider mb-3">
                     <i data-lucide="shield-check" class="me-1"></i> नेपाल सरकारको आधिकारिक पोर्टल
                 </span>
-                <h1 class="display-4 fw-black">छरितो, सुरक्षित र सुलभ अनलाइन सरकारी सेवाहरू</h1>
+                <h1 class="display-4 fw-black">छरिटो, सुरक्षित र सुलभ अनलाइन सरकारी सेवाहरू</h1>
                 <p class="lead mb-4">सवारी चालक अनुमतिपत्र, राहदानी, जन्म दर्ता, विवाह दर्ता, व्यावसायिक इजाजत पत्र तथा घर नक्सा स्वीकृतिका लागि घरैबाट अनलाइन आवेदन दिनुहोस् र प्रत्यक्ष ट्र्याकिङ गर्नुहोस्।</p>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
                     @auth
@@ -71,7 +71,7 @@
             </div>
             <div class="col-12 col-lg-5 text-center">
                 <div class="p-4 bg-white text-dark rounded-4 shadow-lg fade-in text-start border">
-                    <h5 class="fw-bold mb-3 text-primary"><i data-lucide="zap" class="me-2"></i>मुख्य सुविधाहरू</h5>
+                    <h5 class="fw-bold mb-3 text-primary"><i class="me-2"></i>मुख्य सुविधाहरू</h5>
                     <div class="d-flex align-items-start gap-3 mb-3">
                         <div class="bg-primary-subtle text-primary p-2 rounded-3 fs-4"><i data-lucide="file-up"></i></div>
                         <div>

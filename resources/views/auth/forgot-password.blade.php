@@ -1,10 +1,10 @@
 @extends('layouts.guest')
 
-@section('title', 'Forgot Password — GovServices')
+@section('title', 'पासवर्ड भुल्नुभयो — बाह्रदशी गाउँपालिका')
 
 @section('content')
-<h3>Forgot Password?</h3>
-<p class="auth-subtitle">No problem. Enter your email address and we will send you a 6-digit OTP code.</p>
+<h3>पासवर्ड भुल्नुभयो?</h3>
+<p class="auth-subtitle">चिन्ता गर्नुहोस् नै। आफ्नो इमेल ठेगाना प्रविष्ट गर्नुहोस् र हामी ६ अङ्कको OTP कोड पठाइदिनेछौ।</p>
 
 @if (session('status'))
     <div class="alert alert-success mb-3" role="alert">

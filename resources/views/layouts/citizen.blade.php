@@ -7,12 +7,9 @@
 <nav class="navbar navbar-expand-lg citizen-navbar sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('citizen.dashboard') }}">
-            <span class="brand-icon-sm"><i data-lucide="building-2"></i></span>
-            नेपाल सरकार
+            <img src="{{ asset('images/Emblem_of_Nepal.png') }}" alt="Bahrdashi Gaupalikaù Logo" style="height: 40px; width: auto;" class="me-2">
+            <span class="d-none d-lg-inline">बाह्रदशी गाउँपालिका</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#citizenNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="citizenNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item">

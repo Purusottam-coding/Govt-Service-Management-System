@@ -1,10 +1,10 @@
 @extends('layouts.guest')
 
-@section('title', 'नागरिक लगइन — नेपाल सरकार')
+@section('title', 'नागरिक लगइन — बाह्रदशी गाउँपालिका')
 
 @section('content')
 <h3>स्वागत छ</h3>
-<p class="auth-subtitle">नेपाल सरकार अनलाइन सेवा पोर्टलमा लगइन गर्नुहोस्</p>
+<p class="auth-subtitle">बाह्रदशी गाउँपालिका अनलाइन सेवा पोर्टलमा लगइन गर्नुहोस्</p>
 
 @if (session('status'))
     <div class="alert alert-success mb-3" role="alert">

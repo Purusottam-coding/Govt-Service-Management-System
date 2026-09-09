@@ -1,10 +1,10 @@
 @extends('layouts.guest')
 
-@section('title', 'नयाँ खाता खोल्नुहोस् — नेपाल सरकार')
+@section('title', 'नयाँ खाता खोल्नुहोस् — बाह्रदशी गाउँपालिका')
 
 @section('content')
 <h3>नयाँ खाता दर्ता</h3>
-<p class="auth-subtitle">नेपाल सरकार अनलाइन सेवाका लागि नागरिक खाता खोल्नुहोस्</p>
+<p class="auth-subtitle">बाह्रदशी गाउँपालिका अनलाइन सेवाका लागि नागरिक खाता खोल्नुहोस्</p>
 
 <form method="POST" action="{{ route('register') }}">
     @csrf

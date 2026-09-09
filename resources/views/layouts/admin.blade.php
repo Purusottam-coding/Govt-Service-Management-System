@@ -9,9 +9,10 @@
 <!-- Admin Sidebar -->
 <aside class="admin-sidebar" id="adminSidebar">
     <div class="sidebar-brand">
-        <div class="brand-icon"><i data-lucide="building-2"></i></div>
+        <img src="{{ asset('images/Emblem_of_Nepal.png') }}" alt="Bahrdashi Gaupalikaù Logo" style="height: 40px; width: auto;" class="me-2">
+
         <div>
-            <h5>नेपाल सरकार</h5>
+            <h5>बाह्रदशी गाउँपालिका</h5>
             <small>प्रशासकीय कक्ष</small>
         </div>
     </div>
