@@ -31,7 +31,7 @@
     </button>
 
     <div class="text-center">
-        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold" style="color: #78191d;"><i data-lucide="arrow-left" class="me-1"></i>Back to Sign In</a>
+        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold" style="color: #053775;"><i data-lucide="arrow-left" class="me-1"></i>Back to Sign In</a>
     </div>
 </form>
 @endsection

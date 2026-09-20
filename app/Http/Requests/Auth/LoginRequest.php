@@ -30,6 +30,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'role' => ['nullable', 'string', 'in:admin,citizen'],
         ];
     }
 
@@ -42,8 +43,29 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $credentials = [
+            'email' => $this->string('email')->toString(),
+            'password' => $this->string('password')->toString(),
+        ];
+
+        // If role is selected, include it in authentication attempt
+        if ($this->filled('role')) {
+            $credentials['role'] = $this->string('role')->toString();
+        }
+
+        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
+
+            // Check if user exists with this email but has a different role
+            $userWithEmail = \App\Models\User::where('email', $this->email)->first();
+            if ($userWithEmail && $this->filled('role') && $userWithEmail->role !== $this->role) {
+                $chosenRoleLabel = $this->role === 'admin' ? 'प्रशासक (Admin)' : 'नागरिक (Citizen)';
+                $actualRoleLabel = $userWithEmail->role === 'admin' ? 'प्रशासक (Admin)' : 'नागरिक (Citizen)';
+
+                throw ValidationException::withMessages([
+                    'email' => "यो खाता {$chosenRoleLabel} भूमिकामा दर्ता छैन। यो खाता {$actualRoleLabel} को हो।",
+                ]);
+            }
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
@@ -81,6 +103,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->string('role').'|'.$this->ip());
     }
 }

@@ -75,7 +75,7 @@
 
     <div class="text-center">
         <span class="text-muted small">पहिले नै खाता छ?</span>
-        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold ms-1" style="color: #78191d;">लगइन गर्नुहोस्</a>
+        <a href="{{ route('login') }}" class="text-decoration-none small fw-semibold ms-1" style="color: #053775;">लगइन गर्नुहोस्</a>
     </div>
 </form>
 @endsection

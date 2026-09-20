@@ -39,3 +39,64 @@ test('users can logout', function () {
     $this->assertGuest();
     $response->assertRedirect('/');
 });
+
+test('admin can authenticate with admin role and is redirected to admin dashboard', function () {
+    $admin = User::factory()->create([
+        'role' => 'admin',
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => $admin->email,
+        'password' => 'password',
+        'role' => 'admin',
+    ]);
+
+    $this->assertAuthenticatedAs($admin);
+    $response->assertRedirect(route('admin.dashboard', absolute: false));
+});
+
+test('citizen can authenticate with citizen role and is redirected to citizen dashboard', function () {
+    $citizen = User::factory()->create([
+        'role' => 'citizen',
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => $citizen->email,
+        'password' => 'password',
+        'role' => 'citizen',
+    ]);
+
+    $this->assertAuthenticatedAs($citizen);
+    $response->assertRedirect(route('citizen.dashboard', absolute: false));
+});
+
+test('admin cannot authenticate when citizen role is selected', function () {
+    $admin = User::factory()->create([
+        'role' => 'admin',
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => $admin->email,
+        'password' => 'password',
+        'role' => 'citizen',
+    ]);
+
+    $this->assertGuest();
+    $response->assertSessionHasErrors('email');
+});
+
+test('citizen cannot authenticate when admin role is selected', function () {
+    $citizen = User::factory()->create([
+        'role' => 'citizen',
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => $citizen->email,
+        'password' => 'password',
+        'role' => 'admin',
+    ]);
+
+    $this->assertGuest();
+    $response->assertSessionHasErrors('email');
+});
+
