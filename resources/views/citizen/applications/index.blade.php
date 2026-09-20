@@ -75,9 +75,25 @@
                         </td>
                         <td>{{ $app->submitted_at ? $app->submitted_at->format('M d, Y') : $app->created_at->format('M d, Y') }}</td>
                         <td>
-                            <a href="{{ route('citizen.applications.show', $app) }}" class="btn btn-sm btn-outline-primary">
-                                <i data-lucide="eye" class="me-1"></i> विवरण
-                            </a>
+                            <div class="d-flex align-items-center gap-1">
+                                <a href="{{ route('citizen.applications.show', $app) }}" class="btn btn-sm btn-outline-primary" title="विवरण हेर्नुहोस्">
+                                    <i data-lucide="eye" class="me-1"></i> विवरण
+                                </a>
+                                @if($app->canBeEdited())
+                                    <a href="{{ route('citizen.applications.edit', $app) }}" class="btn btn-sm btn-outline-warning" title="सम्पादन गर्नुहोस्">
+                                        <i data-lucide="pencil" class="me-1"></i> सम्पादन
+                                    </a>
+                                @endif
+                                @if($app->canBeDeleted())
+                                    <form action="{{ route('citizen.applications.destroy', $app) }}" method="POST" class="d-inline" onsubmit="return confirm('के तपाईं पक्का यो निवेदन हटाउन चाहनुहुन्छ? यो कार्य फिर्ता गर्न सकिँदैन।');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="हटाउनुहोस्">
+                                            <i data-lucide="trash-2" class="me-1"></i> हटाउनुहोस्
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty

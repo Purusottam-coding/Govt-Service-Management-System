@@ -31,9 +31,9 @@ class Application extends Model
     {
         static::creating(function (Application $application) {
             if (empty($application->application_number)) {
-                $year = now()->format('Y');
+                $date = now()->format('Ymd');
                 $lastId = static::max('id') ?? 0;
-                $application->application_number = 'GOV-' . $year . '-' . str_pad($lastId + 1, 5, '0', STR_PAD_LEFT);
+                $application->application_number = 'GOV-' . $date . '-' . str_pad($lastId + 1, 5, '0', STR_PAD_LEFT);
             }
             if (empty($application->submitted_at)) {
                 $application->submitted_at = now();
@@ -87,5 +87,30 @@ class Application extends Model
             'completed' => 'सम्पन्न',
             default => ucfirst($this->status),
         };
+    }
+
+    public function canBeEdited(): bool
+    {
+        return $this->canBeEditedOrDeleted();
+    }
+
+    public function canBeDeleted(): bool
+    {
+        return $this->canBeEditedOrDeleted();
+    }
+
+    public function canBeEditedOrDeleted(): bool
+    {
+        // Cannot edit or delete once application is no longer in pending status
+        if ($this->status !== 'pending') {
+            return false;
+        }
+
+        // Cannot edit or delete if payment has been made (completed) or is pending verification
+        if ($this->payment && in_array($this->payment->status, ['completed', 'pending'])) {
+            return false;
+        }
+
+        return true;
     }
 }

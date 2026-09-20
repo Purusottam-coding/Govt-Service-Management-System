@@ -1,23 +1,41 @@
 @extends('layouts.citizen', ['pageTitle' => 'निवेदन विवरण तथा स्थिति'])
 
 @section('content')
-<div class="mb-4 d-flex justify-content-between align-items-center">
-    <a href="{{ route('citizen.applications.index') }}" class="btn btn-sm btn-outline-secondary">
-        <i data-lucide="arrow-left" class="me-1"></i> मेरा निवेदनहरूमा फर्कनुहोस्
-    </a>
-    @if($application->payment && $application->payment->status === 'completed')
-        <a href="{{ route('citizen.payments.receipt', $application) }}" class="btn btn-sm btn-outline-success">
-            <i data-lucide="receipt" class="me-1"></i> भुक्तानी रसिद हेर्नुहोस्
+<div class="mb-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div class="d-flex align-items-center gap-2">
+        <a href="{{ route('citizen.applications.index') }}" class="btn btn-sm btn-outline-secondary">
+            <i data-lucide="arrow-left" class="me-1"></i> मेरा निवेदनहरूमा फर्कनुहोस्
         </a>
-    @elseif($application->payment && $application->payment->status === 'pending')
-        <span class="badge bg-primary text-white px-3 py-2">
-            <i data-lucide="clock-3" class="me-1"></i> भुक्तानी प्रमाण प्रमाणीकरणमा
-        </span>
-    @elseif(($application->service->fee ?? 0) > 0)
-        <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-primary">
-            <i data-lucide="credit-card" class="me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
-        </a>
-    @endif
+        @if($application->canBeEdited())
+            <a href="{{ route('citizen.applications.edit', $application) }}" class="btn btn-sm btn-outline-warning">
+                <i data-lucide="pencil" class="me-1"></i> सम्पादन गर्नुहोस्
+            </a>
+        @endif
+        @if($application->canBeDeleted())
+            <form action="{{ route('citizen.applications.destroy', $application) }}" method="POST" class="d-inline" onsubmit="return confirm('के तपाईं पक्का यो निवेदन हटाउन चाहनुहुन्छ? यो कार्य फिर्ता गर्न सकिँदैन।');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-outline-danger">
+                    <i data-lucide="trash-2" class="me-1"></i> हटाउनुहोस्
+                </button>
+            </form>
+        @endif
+    </div>
+    <div>
+        @if($application->payment && $application->payment->status === 'completed')
+            <a href="{{ route('citizen.payments.receipt', $application) }}" class="btn btn-sm btn-outline-success">
+                <i data-lucide="receipt" class="me-1"></i> भुक्तानी रसिद हेर्नुहोस्
+            </a>
+        @elseif($application->payment && $application->payment->status === 'pending')
+            <span class="badge bg-primary text-white px-3 py-2">
+                <i data-lucide="clock-3" class="me-1"></i> भुक्तानी प्रमाण प्रमाणीकरणमा
+            </span>
+        @elseif(($application->service->fee ?? 0) > 0)
+            <a href="{{ route('citizen.payments.create', $application) }}" class="btn btn-sm btn-primary">
+                <i data-lucide="credit-card" class="me-1"></i> दस्तुर भुक्तानी गर्नुहोस् (रु. {{ number_format($application->service->fee, 2) }})
+            </a>
+        @endif
+    </div>
 </div>
 
 <!-- Visual Status Tracker -->

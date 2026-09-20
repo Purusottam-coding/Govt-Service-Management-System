@@ -91,7 +91,7 @@ Route::middleware(['auth', 'citizen'])
         Route::get('/services', [Citizen\ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/{service}', [Citizen\ServiceController::class, 'show'])->name('services.show');
 
-        Route::resource('applications', Citizen\ApplicationController::class)->only(['index', 'create', 'store', 'show']);
+        Route::resource('applications', Citizen\ApplicationController::class);
 
         Route::get('/payments/{application}', [Citizen\PaymentController::class, 'create'])->name('payments.create');
         Route::post('/payments/{application}', [Citizen\PaymentController::class, 'store'])->name('payments.store');
