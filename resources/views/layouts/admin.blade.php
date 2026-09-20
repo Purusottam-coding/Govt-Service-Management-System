@@ -3,6 +3,9 @@
 @section('title', 'प्रशासन — ' . ($pageTitle ?? 'ड्यासबोर्ड'))
 
 @section('body')
+<!-- Full-Screen Fixed Watermark Backdrop -->
+<div class="dashboard-watermark-fixed admin-watermark-offset"></div>
+
 <!-- Sidebar Overlay (mobile) -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 

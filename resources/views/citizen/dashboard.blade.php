@@ -1,16 +1,22 @@
 @extends('layouts.citizen', ['pageTitle' => 'नागरिक ड्यासबोर्ड'])
 
 @section('content')
-<!-- Hero Welcome Banner -->
-<div class="card bg-primary text-white mb-4 border-0 shadow-sm" style="background: linear-gradient(135deg, #1a56db 0%, #0ea5e9 100%);">
-    <div class="card-body p-4">
+<!-- Hero Welcome Banner with Barhadashi Municipality Building Background -->
+<div class="card text-white mb-4 border-0 shadow-sm barhadashi-dashboard-banner">
+    <div class="barhadashi-banner-bg" style="background-image: url('{{ asset('images/barhadashi_building.jpg') }}');"></div>
+    <div class="barhadashi-banner-overlay"></div>
+    <div class="card-body p-4 barhadashi-banner-content">
         <div class="row align-items-center">
             <div class="col-md-8">
-                <h4 class="fw-bold mb-1">स्वागत छ, {{ auth()->user()->name }}!</h4>
-                <p class="mb-0 opacity-90">अनलाइन सरकारी सेवाहरूमा पहुँच पाउनुहोस्, सेवाका लागि आवेदन दिनुहोस्, कागजातहरू अपलोड गर्नुहोस् र आफ्नो निवेदनको स्थिति सजिलै ट्र्याक गर्नुहोस्।</p>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <img src="{{ asset('images/Emblem_of_Nepal.png') }}" alt="Nepal Emblem" style="height: 34px; width: auto;" class="bg-white rounded-circle p-1 shadow-sm">
+                    <span class="barhadashi-badge-pill">बाह्रदशी गाउँपालिका • नागरिक सेवा पोर्टल</span>
+                </div>
+                <h3 class="fw-extrabold text-white mb-1">स्वागत छ, {{ auth()->user()->name }}!</h3>
+                <p class="mb-0 text-white-50" style="color: rgba(255, 255, 255, 0.9) !important;">गाउँ कार्यपालिकाको कार्यालय, झापा • सरकारी सेवाहरूमा अनलाइन आवेदन दिनुहोस्, कागजात अपलोड गर्नुहोस् र निवेदन स्थिति ट्र्याक गर्नुहोस्।</p>
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                <a href="{{ route('citizen.services.index') }}" class="btn btn-light fw-bold text-primary">
+                <a href="{{ route('citizen.services.index') }}" class="btn btn-light fw-bold px-4 py-2 text-primary shadow-sm">
                     <i data-lucide="search" class="me-1"></i> सेवाहरू खोज्नुहोस्
                 </a>
             </div>

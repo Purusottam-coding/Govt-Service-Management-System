@@ -1,20 +1,23 @@
 @extends('layouts.admin', ['pageTitle' => 'प्रशासकीय ड्यासबोर्ड'])
 
 @section('content')
-<!-- Admin Welcome Banner -->
-<div class="card bg-dark text-white mb-4 border-0 overflow-hidden shadow-sm" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);">
-    <div class="card-body p-4 position-relative">
+<!-- Admin Welcome Banner with Barhadashi Municipality Building Background -->
+<div class="card text-white mb-4 border-0 overflow-hidden shadow-sm barhadashi-dashboard-banner">
+    <div class="barhadashi-banner-bg" style="background-image: url('{{ asset('images/barhadashi_building.jpg') }}');"></div>
+    <div class="barhadashi-banner-overlay"></div>
+    <div class="card-body p-4 barhadashi-banner-content">
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="d-flex align-items-center gap-2 mb-2">
-                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold text-uppercase small">प्रशासकीय कक्ष</span>
+                    <img src="{{ asset('images/Emblem_of_Nepal.png') }}" alt="Nepal Emblem" style="height: 34px; width: auto;" class="bg-white rounded-circle p-1 shadow-sm">
+                    <span class="barhadashi-badge-pill">बाह्रदशी गाउँपालिका • प्रशासकीय कक्ष</span>
                     <span class="text-white-50 extra-small"><i data-lucide="calendar" class="me-1"></i>{{ date('F d, Y') }}</span>
                 </div>
                 <h3 class="fw-extrabold text-white mb-1">स्वागत छ, {{ auth()->user()->name }}!</h3>
-                <p class="text-white-50 mb-0">नेपाल सरकार अनलाइन सेवा व्यवस्थापन प्रणाली — प्राप्त निवेदनहरू, नागरिक सूची तथा सेवाहरूको स्थिति ट्र्याक गर्नुहोस्।</p>
+                <p class="text-white-50 mb-0" style="color: rgba(255, 255, 255, 0.88) !important;">गाउँ कार्यपालिकाको कार्यालय, झापा — प्राप्त निवेदनहरू, नागरिक सूची, सेवाहरू तथा भुक्तानी स्थिति ट्र्याक गर्नुहोस्।</p>
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                <a href="{{ route('admin.applications.index') }}" class="btn btn-primary fw-bold px-4 py-2">
+                <a href="{{ route('admin.applications.index') }}" class="btn btn-light fw-bold px-4 py-2 text-primary shadow-sm">
                     <i data-lucide="file-text" class="me-1"></i> निवेदनहरू समीक्षा गर्नुहोस्
                 </a>
             </div>

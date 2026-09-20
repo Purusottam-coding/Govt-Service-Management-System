@@ -127,14 +127,58 @@ php artisan test
 - Inspect uploaded documents and payment statements
 - Manage services, departments, notices, and feedback
 
-## Project Structure
+## Project Folder Structure
 
-- `app/Http/Controllers` - citizen, admin, and auth controllers
-- `app/Models` - Eloquent models
-- `app/Enums` - application and payment status enums
-- `resources/views` - Blade views for citizen, admin, and auth pages
-- `database/migrations` - database schema changes
-- `routes` - web and auth routes
+The project follows a clean, modular, role-separated Laravel architecture:
+
+```text
+government-service/
+├── app/
+│   ├── Enums/                     # Status and role definitions
+│   │   ├── ApplicationStatus.php  # PENDING, UNDER_REVIEW, APPROVED, REJECTED, etc.
+│   │   ├── PaymentStatus.php      # PENDING, VERIFIED, REJECTED
+│   │   └── UserRole.php           # ADMIN, CITIZEN
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/             # Admin portal controllers (Applications, Departments, Services, etc.)
+│   │   │   ├── Citizen/           # Citizen portal controllers (Applications, Payments, Services, etc.)
+│   │   │   ├── Auth/              # Authentication & OTP controllers (Login, Register, Password, etc.)
+│   │   │   ├── Api/               # API endpoints (Payment APIs, etc.)
+│   │   │   └── ProfileController.php
+│   │   ├── Middleware/            # Role guards (AdminMiddleware, CitizenMiddleware)
+│   │   └── Requests/              # Form validation requests separated by role (Admin, Citizen, Auth)
+│   ├── Models/                    # Eloquent models (Application, Service, Department, Payment, etc.)
+│   ├── Notifications/             # Email and system notifications (OTP, status updates)
+│   ├── Providers/                 # Service providers
+│   ├── Services/                  # Business logic layer (ApplicationService, PaymentService, NoticeService)
+│   └── Traits/                    # Reusable traits (File upload handlers, audit logs)
+├── bootstrap/                     # Framework bootstrap & middleware configuration
+├── config/                        # Application configurations (auth, database, mail, etc.)
+├── database/
+│   ├── factories/                 # Model factories for testing and seeding
+│   ├── migrations/                # Database schema migrations
+│   └── seeders/                   # Database seeders (Admin, Citizen, Services, Departments)
+├── public/                        # Public entry point and static assets
+│   ├── css/                       # Custom CSS (custom.css - Barhadashi styling)
+│   ├── images/                    # Official emblems, backgrounds, and static media
+│   └── storage/                   # Symlink to storage/app/public for uploaded files
+├── resources/
+│   ├── css/                       # Source CSS / Tailwind entries
+│   ├── js/                        # Source JavaScript / Vite build entries
+│   └── views/                     # Blade view templates
+│       ├── admin/                 # Admin dashboard and management views
+│       ├── citizen/               # Citizen portal views (Applications, Payments, Services)
+│       ├── auth/                  # Authentication views (Login, Register, Forgot Password, Reset)
+│       ├── layouts/               # Master layouts (admin.blade.php, citizen.blade.php, guest.blade.php)
+│       ├── components/            # Reusable Blade UI components (alerts, modals, inputs)
+│       └── emails/                # Email notification templates (OTP, notifications)
+├── routes/
+│   ├── web.php                    # Web routes organized by role prefixes (/admin, /citizen)
+│   ├── auth.php                   # Authentication routes (login, register, password reset)
+│   └── console.php                # Artisan console commands
+├── storage/                       # Application storage (logs, uploaded citizen documents, QR codes)
+└── tests/                         # Pest and PHPUnit automated test suites
+```
 
 ## Notes
 

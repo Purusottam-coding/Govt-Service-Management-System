@@ -1154,7 +1154,7 @@ a {
 .auth-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(5, 55, 117, 0.92) 0%, rgba(35, 74, 131, 0.90) 60%, rgba(178, 28, 66, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(5, 55, 117, 0.94) 0%, rgba(35, 74, 131, 0.90) 60%, rgba(3, 37, 82, 0.95) 100%);
     backdrop-filter: blur(1.5px);
     -webkit-backdrop-filter: blur(1.5px);
 }
@@ -1266,13 +1266,13 @@ a {
     overflow: hidden;
 }
 
-/* Card Header Box (Barhadashi Government Navy Blue & Red Accent) */
+/* Card Header Box (Barhadashi Government Navy Blue) */
 .auth-card-header {
     background: linear-gradient(135deg, #053775 0%, #234a83 100%);
     color: #ffffff;
     padding: 1.75rem 1.5rem 1.5rem;
     text-align: center;
-    border-bottom: 4px solid #b21c42;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     position: relative;
 }
 
@@ -1312,15 +1312,16 @@ a {
 
 .auth-header-badge {
     display: inline-block;
-    background: #b21c42;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 9999px;
-    padding: 0.25rem 0.95rem;
+    padding: 0.28rem 1rem;
     font-size: 0.78rem;
     font-weight: 600;
     color: #ffffff;
     letter-spacing: 0.02em;
-    box-shadow: 0 2px 8px rgba(178, 28, 66, 0.35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 /* Card Body */
@@ -1420,7 +1421,7 @@ a {
     color: #053775;
 }
 
-/* Primary Button (Barhadashi Navy & Red Hover) */
+/* Primary Button (Barhadashi Navy) */
 .btn-auth-primary {
     background: linear-gradient(135deg, #053775 0%, #234a83 100%);
     border-color: #053775;
@@ -1435,11 +1436,11 @@ a {
 
 .btn-auth-primary:hover,
 .btn-auth-primary:focus {
-    background: linear-gradient(135deg, #b21c42 0%, #8f1433 100%);
-    border-color: #b21c42;
+    background: linear-gradient(135deg, #032552 0%, #163e75 100%);
+    border-color: #032552;
     color: #ffffff;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(178, 28, 66, 0.35);
+    box-shadow: 0 6px 16px rgba(5, 55, 117, 0.35);
 }
 
 .btn-auth-primary:active {
@@ -1466,7 +1467,7 @@ a {
 }
 
 .auth-footer-link:hover {
-    color: #b21c42;
+    color: #032552;
     text-decoration: underline;
 }
 
@@ -1504,5 +1505,135 @@ a {
         padding: 1.75rem 1.5rem;
     }
 }
+
+/* =========================================================
+   Barhadashi Municipality Dashboard Watermark & Banners
+   ========================================================= */
+.dashboard-watermark-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/barhadashi_building.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.08; /* Low transparency / subtle faint watermark */
+    pointer-events: none;
+    z-index: 0;
+}
+
+.admin-watermark-offset {
+    left: 270px;
+    width: calc(100vw - 270px);
+}
+
+@media (max-width: 991.98px) {
+    .admin-watermark-offset {
+        left: 0;
+        width: 100vw;
+    }
+}
+
+.citizen-portal-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.citizen-main {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 3.5rem;
+    flex: 1;
+}
+
+.admin-main {
+    position: relative;
+    z-index: 1;
+}
+
+.admin-main .content-area {
+    position: relative;
+    z-index: 1;
+}
+
+/* Citizen Navbar Branding */
+.citizen-navbar {
+    background: #053775;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 14px rgba(5, 55, 117, 0.18);
+}
+
+.citizen-navbar .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+.citizen-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.85rem !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.citizen-navbar .nav-link:hover,
+.citizen-navbar .nav-link.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Barhadashi Municipality Dashboard Hero Banner */
+.barhadashi-dashboard-banner {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #053775 0%, #163e75 100%);
+    box-shadow: 0 10px 25px -5px rgba(5, 55, 117, 0.25);
+    overflow: hidden;
+    position: relative;
+}
+
+.barhadashi-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 35%;
+    opacity: 0.24; /* Faint, low-transparency building photo */
+    filter: saturate(1.15) contrast(1.05);
+    transition: opacity 0.3s ease;
+}
+
+.barhadashi-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(5, 55, 117, 0.90) 0%, rgba(22, 62, 117, 0.85) 60%, rgba(3, 37, 82, 0.92) 100%);
+}
+
+.barhadashi-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.barhadashi-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
 
 

@@ -20,31 +20,27 @@
         <label class="form-label fw-semibold small text-secondary">प्रवेश भूमिका चयन गर्नुहोस् (Login As) <span class="text-danger">*</span></label>
         <div class="auth-role-tabs d-flex p-1 bg-light border rounded-3 mb-2">
             <button type="button" 
-                    class="auth-role-tab flex-fill btn py-2 fw-semibold {{ old('role', 'citizen') === 'citizen' ? 'active' : '' }}" 
-                    id="tabCitizen" 
-                    onclick="setRole('citizen')">
-                <i data-lucide="user" class="me-1"></i> नागरिक (Citizen)
-            </button>
-            <button type="button" 
-                    class="auth-role-tab flex-fill btn py-2 fw-semibold {{ old('role') === 'admin' ? 'active' : '' }}" 
+                    class="auth-role-tab flex-fill btn py-2 fw-semibold {{ old('role', 'admin') === 'admin' ? 'active' : '' }}" 
                     id="tabAdmin" 
                     onclick="setRole('admin')">
                 <i data-lucide="shield-check" class="me-1"></i> प्रशासक (Admin)
             </button>
+            <button type="button" 
+                    class="auth-role-tab flex-fill btn py-2 fw-semibold {{ old('role', 'admin') === 'citizen' ? 'active' : '' }}" 
+                    id="tabCitizen" 
+                    onclick="setRole('citizen')">
+                <i data-lucide="user" class="me-1"></i> नागरिक (Citizen)
+            </button>
         </div>
-        <input type="hidden" name="role" id="selected_role" value="{{ old('role', 'citizen') }}">
+        <input type="hidden" name="role" id="selected_role" value="{{ old('role', 'admin') }}">
         @error('role')
             <div class="invalid-feedback d-block text-danger small mt-1">{{ $message }}</div>
         @enderror
 
-        <!-- Quick Demo Autofill helper -->
-        <div class="d-flex justify-content-between align-items-center mt-1">
+        <div class="mt-1">
             <span class="text-muted extra-small" id="roleInfoText">
-                <i data-lucide="info" style="width: 12px; height: 12px;" class="me-1"></i>नागरिक खाताबाट मात्र लगइन हुनेछ
+                <i data-lucide="shield-check" style="width: 12px; height: 12px;" class="me-1"></i>प्रशासक खाताबाट मात्र लगइन हुनेछ
             </span>
-            <button type="button" class="btn btn-link p-0 text-decoration-none extra-small" id="quickFillBtn" onclick="quickFillDemo()" style="color: #053775; font-size: 0.76rem;">
-                <i data-lucide="sparkles" style="width: 12px; height: 12px;" class="me-1"></i>डेमो विवरण भर्नुहोस्
-            </button>
         </div>
     </div>
 
@@ -89,7 +85,7 @@
 
     <div class="text-center" id="registerPrompt">
         <span class="text-muted small">खाता छैन?</span>
-        <a href="{{ route('register') }}" class="text-decoration-none small fw-semibold ms-1" style="color: #b21c42;">नयाँ नागरिक खाता खोल्नुहोस्</a>
+        <a href="{{ route('register') }}" class="text-decoration-none small fw-semibold ms-1" style="color: #053775;">नयाँ नागरिक खाता खोल्नुहोस्</a>
     </div>
 </form>
 
@@ -106,30 +102,19 @@
         if (role === 'admin') {
             tabAdmin.classList.add('active');
             tabCitizen.classList.remove('active');
-            emailInput.placeholder = 'admin@gov.np';
+            emailInput.placeholder = 'yours@gmail.com';
             roleInfoText.innerHTML = '<i data-lucide="shield-check" style="width: 12px; height: 12px;" class="me-1"></i>प्रशासक खाताबाट मात्र लगइन हुनेछ';
             registerPrompt.classList.add('d-none');
         } else {
             tabCitizen.classList.add('active');
             tabAdmin.classList.remove('active');
-            emailInput.placeholder = 'citizen@test.np वा तपाईंको इमेल';
+            emailInput.placeholder = 'your@gmail.com';
             roleInfoText.innerHTML = '<i data-lucide="user" style="width: 12px; height: 12px;" class="me-1"></i>नागरिक खाताबाट मात्र लगइन हुनेछ';
             registerPrompt.classList.remove('d-none');
         }
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
-        }
-    }
-
-    function quickFillDemo() {
-        const role = document.getElementById('selected_role').value;
-        if (role === 'admin') {
-            document.getElementById('email').value = 'admin@gov.np';
-            document.getElementById('password').value = 'password';
-        } else {
-            document.getElementById('email').value = 'citizen@test.np';
-            document.getElementById('password').value = 'password';
         }
     }
 
@@ -151,7 +136,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const initialRole = document.getElementById('selected_role').value || 'citizen';
+        const initialRole = document.getElementById('selected_role').value || 'admin';
         setRole(initialRole);
     });
 </script>
