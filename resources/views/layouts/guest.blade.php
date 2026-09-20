@@ -41,15 +41,11 @@
                 </div>
             </div>
 
-            <!-- Footer Links -->
+            <!-- Footer Info -->
             <div class="auth-footer-links">
-                <a href="{{ route('welcome') }}" class="auth-footer-link">
-                    <i data-lucide="arrow-left" class="me-1"></i>गृहपृष्ठमा फर्कनुहोस्
-                </a>
-                <span class="auth-footer-separator">•</span>
-                <a href="{{ route('welcome') }}#services" class="auth-footer-link">सेवाहरू</a>
-                <span class="auth-footer-separator">•</span>
-                <a href="{{ route('welcome') }}#about" class="auth-footer-link">प्रणालीको बारेमा</a>
+                <span class="text-muted small">
+                    <i data-lucide="shield-check" class="me-1"></i>बाह्रदशी गाउँपालिका, झापा • अनलाइन सेवा प्रणाली
+                </span>
             </div>
         </div>
     </div>

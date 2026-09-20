@@ -3,8 +3,6 @@
 use App\Http\Controllers\Admin as Admin;
 use App\Http\Controllers\Citizen as Citizen;
 use App\Http\Controllers\ProfileController;
-use App\Models\Notice;
-use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +12,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $featuredServices = Service::where('status', true)->with('department')->latest()->take(6)->get();
-    $publicNotices = Notice::published()->latest()->take(4)->get();
-    return view('welcome', compact('featuredServices', 'publicNotices'));
+    if (auth()->check()) {
+        return auth()->user()->isAdmin()
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('citizen.dashboard');
+    }
+    return redirect()->route('login');
 })->name('welcome');
 
 /*
